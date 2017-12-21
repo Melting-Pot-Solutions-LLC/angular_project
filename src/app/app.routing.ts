@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
+import { PresentationComponent } from './presentation/presentation.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 
 const routes: Routes =[
@@ -15,6 +16,7 @@ const routes: Routes =[
     { path: 'signup',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
+    { path: 'presentation',     component: PresentationComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

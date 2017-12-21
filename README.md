@@ -109,8 +109,8 @@ pk2-angular
 │   │   ├── landing
 │   │   │   ├── landing.component.html
 │   │   │   ├── landing.component.scss
-│   │   │   ├── landing.component.spec.ts
-│   │   │   └── landing.component.ts
+│   │   │   ├── presentation.component.spec.ts
+│   │   │   └── presentation.component.ts
 │   │   ├── profile
 │   │   │   ├── profile.component.html
 │   │   │   ├── profile.component.scss

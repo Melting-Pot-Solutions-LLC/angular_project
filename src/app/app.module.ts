@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 
+
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
@@ -12,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { PresentationComponent } from './presentation/presentation.component';
 
 import { HomeModule } from './home/home.module';
 
@@ -22,7 +24,7 @@ import { HomeModule } from './home/home.module';
     LandingComponent,
     ProfileComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent, PresentationComponent
   ],
   imports: [
     BrowserModule,
