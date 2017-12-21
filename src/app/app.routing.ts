@@ -17,7 +17,7 @@ const routes: Routes =[
     { path: 'landing',          component: LandingComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
     { path: 'presentation',     component: PresentationComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' }
+    { path: '', redirectTo: 'presentation', pathMatch: 'full' }
 ];
 
 @NgModule({
