@@ -14,3 +14,28 @@
   background: rgba(0, 0, 0, 0.7);
   border-radius: 20px;
 }
+
+.input-group {
+  margin: 20px auto;
+  width: 100%;
+}
+
+.personal-form-labels {
+  color: white;
+  margin-right: 80px;
+  font-size: 35px;
+}
+
+
+table {
+  border-collapse: separate;
+}
+
+.form-inline {
+  display: table-row;
+}
+
+.form-inline label, .form-inline input {
+  display: table-cell;
+  margin: 0 0 5px 70px;
+}
