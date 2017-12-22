@@ -24,6 +24,8 @@
   color: white;
   margin-right: 80px;
   font-size: 35px;
+  font-family: "Montserrat", "Helvetica", Arial, sans-serif;
+  font-weight: 100 !important;
 }
 
 
@@ -37,5 +39,13 @@ table {
 
 .form-inline label, .form-inline input {
   display: table-cell;
-  margin: 0 0 5px 70px;
+  margin: 0 0 5px 10px;
+}
+
+#purchase-loan {
+  padding: 30px;
+}
+
+#second-button {
+  margin-top: 30px;
 }
