@@ -37,12 +37,13 @@
   position: absolute;
   top: 50%;
   left:50%;
+
   transform: translate(-50%,-50%);
   background: rgba(41, 84, 146, 0.4);
   border-radius: 20px;
 }
 
-.button-block {
+.circle-buttons-block {
   position: absolute;
   margin-top: 50px;
   top: 2%;
@@ -97,3 +98,16 @@
   margin-top: 30px;
 }
 
+.container-test{
+  text-align: center !important;
+}
+
+.jumbotron-test {
+  position: relative;
+  top: 50%;
+  display: inline-block;
+  margin-top: 25%;
+  /*transform: translate(-50%,-50%);*/
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+}
