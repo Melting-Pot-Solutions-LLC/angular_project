@@ -2,13 +2,35 @@
   margin-bottom: 30px;
 }
 
-.btn-lg {
+.first-buttons a{
   margin: 20px;
+}
+
+.btn-lg {
   color: #F58847;
   background-color: #1A4173;
 }
 .btn-lg:hover {
   border-color: #F58847;
+}
+
+.rounded-circle {
+  border-color: #1A4173;
+  color: #F58847;
+  background: rgba(41, 84, 146, 0.7);
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  font-size: large;
+}
+
+.rounded-circle:hover{
+  background-color: grey;
+}
+
+.rounded-circle.active{
+  border-color: white;
+  border-width: 5px;
 }
 
 .jumbotron {
@@ -22,9 +44,9 @@
 
 .button-block {
   position: absolute;
-  top: 5%;
+  margin-top: 50px;
+  top: 2%;
   left: 28%;
-
 }
 
 
@@ -75,23 +97,3 @@
   margin-top: 30px;
 }
 
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-  margin: 25px;
-  border-color: #1A4173;
-  color: #F58847;
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.btn-circle.btn-xl:hover{
-  background-color: grey;
-}
-
-.btn-circle.btn-xl.active{
-  border-color: white;
-}
