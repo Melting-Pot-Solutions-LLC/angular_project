@@ -1,4 +1,6 @@
 import { Component, OnInit} from '@angular/core';
+declare var jquery:any;
+declare var $ :any;
 
 
 @Component({
@@ -10,7 +12,15 @@ import { Component, OnInit} from '@angular/core';
 export class PresentationComponent implements OnInit {
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    $("#details").click(function(){
+      console.log("clicked");
+    });
+  }
+
+  
+
+
 
 }
 
