@@ -20,6 +20,7 @@ body {
     background: transparent;
 }
 
+
 /*form styles*/
 #msform {
     text-align: center;
@@ -40,6 +41,7 @@ body {
     /*stacking fieldsets above each other*/
     position: relative;
 }
+
 
 /*Hide all except first fieldset*/
 #msform fieldset:not(:first-of-type) {
