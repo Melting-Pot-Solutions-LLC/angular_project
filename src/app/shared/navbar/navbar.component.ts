@@ -15,10 +15,12 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log("navbar");
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     }
     sidebarOpen() {
+        console.log("navbar");
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];
         // console.log(html);
@@ -30,6 +32,7 @@ export class NavbarComponent implements OnInit {
         html.classList.add('nav-open');
 
         this.sidebarVisible = true;
+        console.log("navbar");
     };
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
@@ -37,8 +40,10 @@ export class NavbarComponent implements OnInit {
         this.toggleButton.classList.remove('toggled');
         this.sidebarVisible = false;
         html.classList.remove('nav-open');
+        console.log("navbar");
     };
     sidebarToggle() {
+        console.log("navbar");
         // const toggleButton = this.toggleButton;
         // const body = document.getElementsByTagName('body')[0];
         if (this.sidebarVisible === false) {
@@ -48,6 +53,7 @@ export class NavbarComponent implements OnInit {
         }
     };
     isHome() {
+        console.log("navbar");
         var titlee = this.location.prepareExternalUrl(this.location.path());
 
         if( titlee === '/home' ) {
@@ -58,6 +64,7 @@ export class NavbarComponent implements OnInit {
         }
     }
     isDocumentation() {
+        console.log("navbar");
         var titlee = this.location.prepareExternalUrl(this.location.path());
         if( titlee === '/documentation' ) {
             return true;

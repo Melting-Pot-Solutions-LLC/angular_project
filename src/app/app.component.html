@@ -1,4 +1,8 @@
 
-<!--<app-navbar></app-navbar>-->
-<router-outlet></router-outlet>
-<!--<app-footer *ngIf="removeFooter()"></app-footer>-->
+<app-navbar></app-navbar>
+<router-outlet>
+
+        <jaspero-alerts [defaultSettings]="options"></jaspero-alerts>
+</router-outlet>
+
+<app-footer *ngIf="removeFooter()"></app-footer>
