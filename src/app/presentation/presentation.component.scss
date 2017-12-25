@@ -20,6 +20,17 @@ body {
     background: transparent;
 }
 
+.custom-form {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card-avatar img {
+    width: 150px;
+    height: 100px;
+    border-radius: 2%;
+    border: 1px solid rgba(0,0,30,0.8);
+}
 
 /*form styles*/
 #msform {

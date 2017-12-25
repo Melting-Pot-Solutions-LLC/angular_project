@@ -36,38 +36,123 @@
                 <form id="msform">
                     <!-- progressbar -->
                     <ul id="progressbar">
-                        <li class="active">Personal Details</li>
-                        <li>Social Profiles</li>
-                        <li>Account Setup</li>
+                        <li class="active">Address</li>
+                        <li>Purchases</li>
+                        <li>Your offers</li>
                     </ul>
                     <!-- fieldsets -->
                     <fieldset>
                         <h2 class="fs-title" id="details">What is the property Address?</h2>
-                        <h3 class="fs-subtitle">Tell us something more about you</h3>
-                        <input type="text" name="address" placeholder="Address"/>
-                        <input type="text" name="city" placeholder="City"/>
-                        <input type="text" name="zip" placeholder="Zip"/>
+                        <h3 class="fs-subtitle">Property you are buying, selling or refinancing:</h3>
+                        <input type="text" name="zip" placeholder="ZIP"/>
+                        <select class="form-control custom-form">
+                            <option value="none">Country</option>
+                            <option value="two">Two</option>
+                            <option value="three">Three</option>
+                            <option value="four">Four</option>
+                            <option value="five">Five</option>
+                        </select>
+                        <select class="form-control custom-form">
+                            <option value="none">State</option>
+                            <option value="two">Two</option>
+                            <option value="three">Three</option>
+                            <option value="four">Four</option>
+                            <option value="five">Five</option>
+                        </select>
+                        <select class="form-control custom-form">
+                            <option value="none">City</option>
+                            <option value="two">Two</option>
+                            <option value="three">Three</option>
+                            <option value="four">Four</option>
+                            <option value="five">Five</option>
+                        </select>
                         <input type="button" name="next" class="next action-button" value="Next"/>
                     </fieldset>
                     <fieldset>
-                        <h2 class="fs-title">Social Profiles</h2>
-                        <h3 class="fs-subtitle">Your presence on the social network</h3>
+                        <h2 class="fs-title">We just need to know:</h2>
+                        <h3 class="fs-subtitle">My title needs are in regards to a:</h3>
                         <input type="text" name="purchase_price" placeholder="Purchase Price"/>
                         <input type="text" name="loan_amount" placeholder="Loan Amont"/>
+                        <select class="form-control custom-form">
+                            <option value="none">Search Needs</option>
+                            <option value="two">Purchase, buyer getting a loan</option>
+                            <option value="three">Purchase, buyer paying with cash</option>
+                            <option value="four">Seller quote, buyer is getting a loan</option>
+                            <option value="five">Seller quote, buyer is using cash</option>
+                            <option value="four">Refinance</option>
+                            <option value="five">Home Equity</option>
+                        </select>
+                        <select class="form-control custom-form">
+                            <option value="none">Property type</option>
+                            <option value="one">Single Family</option>
+                            <option value="two">Condo</option>
+                            <option value="three">2 Family</option>
+                            <option value="four">3 Family</option>
+                            <option value="five">4 Family</option>
+                        </select>
+                        <select class="form-control custom-form">
+                            <option value="none">Who is going to be living here?</option>
+                            <option value="two">The buyer as their primary residence</option>
+                            <option value="three">The buyer as their secondary residence</option>
+                            <option value="four">Someone else (not a buyer)</option>
+                            <option value="five">I don't know</option>
+                        </select>
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                         <input type="button" name="next" class="next action-button" value="Next"/>
                     </fieldset>
                     <fieldset>
-                        <h2 class="fs-title">Create your account</h2>
-                        <h3 class="fs-subtitle">Fill in your credentials</h3>
-                        <input type="text" name="email" placeholder="Email"/>
-                        <input type="password" name="pass" placeholder="Password"/>
-                        <input type="password" name="cpass" placeholder="Confirm Password"/>
-                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                        <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                        <h2 class="fs-title">Here your offers</h2>
+                        <div class="container">
+                            <div class="row">
+                                <table class="table">
+                                    <tbody>
+                                    <!-- content block -->
+                                    <tr>
+                                        <th class="align-middle">
+                                            <div class="card-avatar d-none d-md-block">
+                                                <a href="#avatar"><img src="../assets/img/example-logo.jpeg" alt="..."></a>
+                                            </div>
+                                        </th>
+                                        <td>American Title Company<br>
+                                            <span>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-star-half" aria-hidden="true"></i>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-star-o" aria-hidden="true"></i><br>
+                                            </span>
+                                            <a href="#">Details</a>
+                                        </td>
+                                        <td class="align-middle">$1550</td>
+                                        <td class="align-middle"><a href="#" class="btn btn-neutral btn-lg">Contact</a></td>
+                                    </tr>
+                                    <!-- content block end -->
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
-
             </div>
         </div>
 </div>
