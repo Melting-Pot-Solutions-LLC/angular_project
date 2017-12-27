@@ -26,6 +26,8 @@
     "angular-background-img": "^1.1.2",
     "bootstrap": "4.0.0-beta",
     "core-js": "^2.4.1",
+    "firebase-functions": "^0.7.5",
+    "grpc": "^1.8.0",
     "jquery": "3.2.1",
     "jw-bootstrap-switch-ng2": "1.0.3",
     "ng2-nouislider": "1.6.1",
