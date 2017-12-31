@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import { JasperoAlertsModule, AlertsService } from '@jaspero/ng2-alerts';
 
 declare var jquery:any;
@@ -12,26 +12,21 @@ declare var $:any;
 })
 
 export class PresentationComponent implements OnInit {
+	contactForm = false;
 
   constructor(private _alert: AlertsService)
   {
 
   }
 
-  open()
+  open(feature: boolean)
   {
-	  this._alert.create('success', "Your information will be received by the title companies you selected", {
-		overlay: true,
-		overlayClickToClose: true,
-		showCloseButton: true,
-		duration: 5000
-	});
-
+      this.contactForm = true;
   }
   ngOnInit() {
 
-	  
-    
+
+
 
 
 //jQuery time
