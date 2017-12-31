@@ -19,9 +19,20 @@ export class PresentationComponent implements OnInit {
 
   }
 
-  open(feature: boolean)
+    open(feature: boolean)
+    {
+        this.contactForm = true;
+    }
+
+  send()
   {
-      this.contactForm = true;
+	  	this._alert.create('success', "Your information will be received by the title companies you selected", {
+		overlay: true,
+		overlayClickToClose: true,
+		showCloseButton: true,
+		duration: 5000
+	});
+
   }
   ngOnInit() {
 
