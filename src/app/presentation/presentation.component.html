@@ -44,21 +44,22 @@
                     <!-- progressbar -->
                     <ul id="progressbar">
                         <li class="active">Action</li>
-                        <li>Address</li>
-                        <li>Purchases</li>
+                        <li>Address & Purchases</li>
+                        <!--<li>Purchases</li>-->
                         <li>Your offers</li>
-                        <li>Contact</li>
+                        <!--<li>Contact</li>-->
                     </ul>
                     <!-- fieldsets -->
                     <fieldset>
                         <h2 class="fs-title" id="details">Compare Title Quotes Free</h2>
-
-                        <input type="button" name="next" class="next action-button" value="Refinance" />
                         <input type="button" name="next" class="next action-button" value="Purchase" />
+                        <input type="button" name="next" class="next action-button" value="Refinance" />
                     </fieldset>
                     <fieldset>
-                        <h2 class="fs-title" id="details">What is the property Address?</h2>
+                        <h2 class="fs-title" id="details">What is the property Address and Title's Regrads?</h2>
                         <h3 class="fs-subtitle">Property you are buying, selling or refinancing:</h3>
+                        <input type="text" name="purchase_price" placeholder="Purchase Price"/>
+                        <input type="text" name="loan_amount" placeholder="Loan Amont"/>
                         <input type="text" name="zip" placeholder="ZIP"/>
                         <select class="form-control custom-form">
                             <option value="none">County</option>
@@ -80,6 +81,7 @@
                         <input type="button" name="previous" class="previous action-button-previous" value="Back"/>
                         <input type="button" name="next" class="next action-button" value="Next"/>
                     </fieldset>
+                    <!--
                     <fieldset>
                         <h2 class="fs-title">We just need to know:</h2>
                         <h3 class="fs-subtitle">My title needs are in regards to a:</h3>
@@ -112,6 +114,7 @@
                         <input type="button" name="previous" class="previous action-button-previous" value="Back"/>
                         <input type="button" name="next" class="next action-button" value="Next"/>
                     </fieldset>
+                    -->
                     <fieldset>
                         <h2 class="fs-title">Here your offers</h2>
                         <div class="container">
@@ -147,9 +150,7 @@
                                         <td class="align-middle">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input class="form-check-input" type="checkbox" value="">
-                                                  
-                                                  <span class="form-check-sign"></span>
+                                                    <input type="button" name="next" class="action-button" value="Contact" (click)="open()"/>
                                                 </label>
                                             </div>
                                         </td>
@@ -182,9 +183,9 @@
                                         <td class="align-middle">
                                             <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        
-                                                        <span class="form-check-sign"></span>
+                                                        <div class="d-xs-none">
+                                                        <input type="button" name="next" class="action-button" value="Contact" (click)="open()"/>
+                                                        </div>
                                                     </label>
                                             </div>
                                         </td>
@@ -194,9 +195,12 @@
                             </table>
                         </div>
                     </div>
+                        <!--
                         <input type="button" name="previous" class="previous action-button-previous" value="Back"/>
-                        <input type="button" name="next" class="next action-button" value="Next"/>
+                        <input type="button" name="next" class="next action-button" value="Get Contacts"/>
+                        -->
                     </fieldset>
+                    <!--
                     <fieldset>
                             <h2 class="fs-title">Personal Website</h2>
                             <h3 class="fs-subtitle">Tell us something more about you</h3>
@@ -207,7 +211,7 @@
                             <input type="button" name="previous" class="previous action-button-previous" value="Back"/>
                             <input type="button" name="next" class="action-button" value="Get In Touch" (click)="open()"/>
                     </fieldset>
-
+                    -->
                 </form>
 
             </div>
