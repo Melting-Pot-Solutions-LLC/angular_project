@@ -7,6 +7,9 @@ import { JasperoAlertsModule } from '@jaspero/ng2-alerts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app.routing';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule} from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +22,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { PresentationComponent } from './presentation/presentation.component';
 
 import { HomeModule } from './home/home.module';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +32,8 @@ import { HomeModule } from './home/home.module';
     LandingComponent,
     ProfileComponent,
     NavbarComponent,
-    FooterComponent, PresentationComponent
+    FooterComponent,
+    PresentationComponent
   ],
   imports: [
     BrowserModule,
@@ -37,8 +43,11 @@ import { HomeModule } from './home/home.module';
     AppRoutingModule,
     HomeModule,
     JasperoAlertsModule,
-    BrowserAnimationsModule
-  ],
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+],
   providers: [],
   bootstrap: [AppComponent]
 })
