@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
     selector: 'app-navbar',
@@ -10,17 +11,18 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(public location: Location, private element : ElementRef,
+                private authService: AuthService) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
-        console.log("navbar");
+        // console.log("navbar");
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     }
     sidebarOpen() {
-        console.log("navbar");
+        // console.log("navbar");
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];
         // console.log(html);
@@ -32,7 +34,7 @@ export class NavbarComponent implements OnInit {
         html.classList.add('nav-open');
 
         this.sidebarVisible = true;
-        console.log("navbar");
+        // console.log("navbar");
     };
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
@@ -40,10 +42,10 @@ export class NavbarComponent implements OnInit {
         this.toggleButton.classList.remove('toggled');
         this.sidebarVisible = false;
         html.classList.remove('nav-open');
-        console.log("navbar");
+        // console.log("navbar");
     };
     sidebarToggle() {
-        console.log("navbar");
+        // console.log("navbar");
         // const toggleButton = this.toggleButton;
         // const body = document.getElementsByTagName('body')[0];
         if (this.sidebarVisible === false) {
@@ -53,7 +55,7 @@ export class NavbarComponent implements OnInit {
         }
     };
     isHome() {
-        console.log("navbar");
+        // console.log("navbar");
         var titlee = this.location.prepareExternalUrl(this.location.path());
 
         if( titlee === '/home' ) {
@@ -64,7 +66,7 @@ export class NavbarComponent implements OnInit {
         }
     }
     isDocumentation() {
-        console.log("navbar");
+        // console.log("navbar");
         var titlee = this.location.prepareExternalUrl(this.location.path());
         if( titlee === '/documentation' ) {
             return true;
@@ -72,5 +74,9 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+
+    onLogout() {
+        this.authService.logout();
     }
 }

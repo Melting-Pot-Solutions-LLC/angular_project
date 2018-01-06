@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h5 class="modal-title">Modal title</h5>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12">
+      <div class="avatar" *ngIf="data.image">
+        <a href="#avatar"><img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight"></a>
+      </div>
+    </div>
+    <div class="col-12">
+      <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+    </div>
+  </div>
+  <div class="file-upload">
+    <span class="text">Upload</span>
+    <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-default btn-round" (click)="activeModal.close('Close click')">Close</button>
+</div>

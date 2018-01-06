@@ -1,0 +1,108 @@
+<div class="wrapper">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/pexels-photo-186077.jpg');">
+    <div class="filter"></div>
+  </div>
+  <div class="section profile-content" *ngIf="isDataAvailable">
+    <div class="container">
+      <div class="owner">
+        <div class="avatar">
+          <a href="#avatar"><img [src]="data && data.image ? data.image : '../assets/img/default-user.png'" alt="..."></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 ml-auto mr-auto text-center">
+          <div class="name">
+            <br>
+            <button (click)="open()" class="btn btn-outline-default btn-round">Change image</button>
+            <h3>Company Title</h3>
+            <input type="text" class="form-control"
+                   placeholder="{{account.title}}"
+                   name="accountTitle"
+                   [(ngModel)]="account.title">
+            <h6 class="description">Title Company</h6>
+          </div>
+          <h3>Company Description</h3>
+          <textarea type="text" class="form-control"
+                    placeholder="{{account.description}}"
+                    rows="6"
+                    name="accountDescription"
+                    [(ngModel)]="account.description"></textarea>
+          <h3>Fees</h3>
+          <input type="number" class="form-control"
+                 placeholder="{{account.fees}}"
+                 name="accountFees"
+                 [(ngModel)]="account.fees">
+          <h6 class="description">Title Company</h6>
+          <br/>
+          <button (click)="onSave()" class="btn btn-outline-primary btn-round"><i class="fa fa-cog"></i> Save</button>
+          <button routerLink="../" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Back</button>
+        </div>
+      </div>
+      <br/>
+      <div class="nav-tabs-navigation">
+        <div class="nav-tabs-wrapper">
+          <ngb-tabset [justify]="'center'">
+            <ngb-tab title="Rates">
+              <ng-template ngbTabContent >
+                <h3 class="text-muted">Rates are not specified yet</h3>
+                <div class="row following" id="follows">
+                  <div class="col-md-6 ml-auto mr-auto">
+                    <ul class="list-unstyled follows">
+                      <!-- <li>
+                          <div class="row">
+                              <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                  <img src="../assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-cir img-no-padding img-responsive">
+                              </div>
+                              <div class="col-md-7 col-sm-4 ml-auto">
+                                  <h6>Flume<br/><small>Musical Producer</small></h6>
+                              </div>
+                              <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox" value="" checked="">
+                                      <span class="form-check-sign"></span>
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                      </li> -->
+
+                      <!-- <li>
+                          <div class="row">
+                              <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                  <img src="../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                              </div>
+                              <div class="card-avatar d-none d-md-block">
+                                      <a href="#avatar"><img src="../assets/img/example-logo.jpeg" alt="..."></a>
+                                  </div>
+                              <div class="col-md-7 col-sm-4 ml-auto">
+                                  <h6>Banks<br /><small>Singer</small></h6>
+                              </div>
+                              <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox" value="" checked="">
+                                      <span class="form-check-sign"></span>
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Ratings">
+              <ng-template ngbTabContent>
+                <h3 class="text-muted">No ratings yet</h3>
+                <br>
+                <!-- <button class="btn btn-warning btn-round">Find artists</button> -->
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,22 +2,23 @@
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/pexels-photo-186077.jpg');">
         <div class="filter"></div>
     </div>
-    <div class="section profile-content">
+    <div class="section profile-content" *ngIf="isDataAvailable">
         <div class="container">
             <div class="owner">
                 <div class="avatar">
-                    <a href="#avatar"><img src="../assets/img/example-logo.jpeg" alt="..."></a>
+                    <a href="#avatar"><img [src]="data && data.image ? data.image : '../assets/img/default-user.png'" alt="..."></a>
                     </div>
                 <div class="name">
-                    <h4 class="title">North American Title Company, Inc. <br /></h4>
-                    <h6 class="description">Title Company</h6>
+                    <h4 class="title">{{account.title}}<br /></h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>North American Title Company is among the largest real estate settlement service providers in the United States, offering its customers a unique blend of personal and dependable service, combined with the unsurpassed financial strength and stability of its S&P 500 parent company.  </p>
+                    <p>{{account.description}}</p>
                     <br />
-                    <button class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Edit Profile</button>
+                    <h4 class="title">Fees: {{account.fees}}</h4>
+                    <br>
+                    <button routerLink="./edit" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Edit Profile</button>
                 </div>
             </div>
             <br/>

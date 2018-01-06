@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <div class="page-header" style="background-image: url('../assets/img/login-image.jpg');">
+    <div class="filter"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+          <div class="card card-register">
+            <h3 class="title">Login</h3>
+            <div class="alert alert-warning" role="alert" *ngIf="errorMessage">
+              <p>{{errorMessage}}</p>
+            </div>
+            <form class="register-form" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+              <label>Email</label>
+              <input type="text" class="form-control"
+                     placeholder="Email"
+                     name="email"
+                     ngModel
+                     required
+                     email>
+              <label>Password</label>
+              <input type="password"
+                     class="form-control"
+                     placeholder="Password"
+                     name="password"
+                     ngModel
+                     required>
+              <button class="btn btn-danger btn-block btn-round">Login</button>
+            </form>
+            <div class="forgot">
+              <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+            </div>
+            <div class="forgot">
+              <a [routerLink]="['/signup']" class="btn btn-link btn-danger">Registration</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer register-footer text-center">
+        <h6>&copy;{{test | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> by Melting Pot Solutions </h6>
+      </div>
+    </div>
+  </div>
+</div>
