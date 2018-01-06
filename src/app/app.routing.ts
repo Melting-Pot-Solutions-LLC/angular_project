@@ -15,7 +15,9 @@ import {EditProfileComponent} from './accounts/edit-profile/edit-profile.compone
 
 const routes: Routes = [
     // { path: 'home',             component: HomeComponent },
-    { path: '', redirectTo: 'landing', pathMatch: 'full' },
+    { path: '',                 component: PresentationComponent }
+    { path: 'user-profile',     component: ProfileComponent },
+    { path: 'signup',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'user-profile',     component: ProfileComponent , canActivate: [AuthGuardService]},
     { path: 'user-profile/edit',     component: EditProfileComponent , canActivate: [AuthGuardService]},
@@ -23,7 +25,7 @@ const routes: Routes = [
     { path: 'login',            component: LoginComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
     { path: 'presentation',     component: PresentationComponent },
-    { path: '**', redirectTo: 'landing'}
+    { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
