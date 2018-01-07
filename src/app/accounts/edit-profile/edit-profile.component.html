@@ -1,12 +1,12 @@
 <div class="wrapper">
-  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/pexels-photo-186077.jpg');">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/pexels-photo-186077.jpg');">
     <div class="filter"></div>
   </div>
   <div class="section profile-content" *ngIf="isDataAvailable">
     <div class="container">
       <div class="owner">
         <div class="avatar">
-          <a href="#avatar"><img [src]="data && data.image ? data.image : '../assets/img/default-user.png'" alt="..."></a>
+          <a href="#avatar"><img [src]="data && data.image ? data.image : 'assets/img/default-user.png'" alt="..."></a>
         </div>
       </div>
       <div class="row">
