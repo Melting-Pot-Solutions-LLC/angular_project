@@ -2,11 +2,18 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
 import {Account} from './account.model';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AccountService {
     accounts: Observable<any[]>;
     defaultAccount: Account;
+
+    private accountSource = new BehaviorSubject<Account>(new Account());
+    currentAccount = this.accountSource.asObservable();
+    changeAccount(account: Account) {
+        this.accountSource.next(account)
+    }
 
     constructor(private db: AngularFireDatabase) {
         this.accounts = db.list('accounts').valueChanges();
@@ -15,21 +22,32 @@ export class AccountService {
 
     saveAccount(account: Account) {
         this.db.object('/accounts/' + account.id).set(account);
+        this.changeAccount(account);
     }
 
     updateAccount(account: Account) {
         this.db.object('/accounts/' + account.id).update(account);
+        this.changeAccount(account);
+        this.defaultAccount = account;
     }
 
     getAccountById(id: string): Observable<any> {
         return this.db.object('/accounts/' + id).valueChanges();
     }
 
-    setupDefaultAccount(id: string) {
-        this.defaultAccount.id = id;
+    getDefaultAccount(): Account {
         this.defaultAccount.title = 'Your company title';
         this.defaultAccount.description = 'Your company description';
         this.defaultAccount.fees = 0;
-        this.defaultAccount.image = {path: '', name: ''};
+        return this.defaultAccount;
+    }
+
+    saveNewAccount(id: string) {
+        const account = new Account();
+        account.id = id;
+        account.title = '';
+        account.description = '';
+        account.fees = 0;
+        this.saveAccount(account);
     }
 }

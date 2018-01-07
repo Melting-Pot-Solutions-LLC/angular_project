@@ -14,24 +14,25 @@ export class ProfileComponent implements OnInit {
     data: any;
 
     account: Account;
+    defaultAccount: Account;
     isDataAvailable = false;
-    isImageAvailable = false;
 
     constructor(private accountService: AccountService,
-                private authService: AuthService,
                 private uploadService: UploadService) {
     }
 
     ngOnInit() {
-        this.accountService.getAccountById(this.authService.currentUserId)
-            .subscribe(account => {
-                this.account = account;
-                this.isDataAvailable = true;
+        this.accountService.currentAccount.subscribe(account => {
+            this.account = account;
+            this.defaultAccount = this.accountService.getDefaultAccount();
+            if (this.account.image) {
+                console.log(this.account.image);
                 this.uploadService.getAccountImage(account).subscribe(image => {
                     this.data = image;
-                    this.isImageAvailable = true;
                 });
-            });
+            }
+            this.isDataAvailable = true;
+        });
     }
 
 }

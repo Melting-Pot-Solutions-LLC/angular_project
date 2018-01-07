@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {EditProfilePhotoComponent} from './edit-profile-photo/edit-profile-photo.component';
 import {UploadService} from '../upload.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-edit-profile',
@@ -13,13 +14,15 @@ import {UploadService} from '../upload.service';
     styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
+    @ViewChild('accountForm') accountForm: NgForm;
+
     data: any;
 
     account: Account;
+    defaultAccount: Account;
     isDataAvailable = false;
 
     constructor(private accountService: AccountService,
-                private authService: AuthService,
                 private router: Router,
                 private modalService: NgbModal,
                 private uploadService: UploadService) {
@@ -27,22 +30,31 @@ export class EditProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.accountService.getAccountById(this.authService.currentUserId)
-            .subscribe(account => {
-                this.account = account;
+        this.accountService.currentAccount.subscribe(account => {
+            this.account = account;
+            this.defaultAccount = this.accountService.getDefaultAccount();
+            if (this.account.image) {
                 this.uploadService.getAccountImage(account).subscribe(image => {
                     this.data = image;
                 });
-                this.isDataAvailable = true;
-            });
+            }
+            this.isDataAvailable = true;
+        });
     }
 
     onSave() {
-        const fixedImg = this.data.image.split(/,(.+)/)[1];
+        console.log(this.accountForm.value);
+        this.account.title = this.accountForm.value.accountTitle;
+        this.account.description = this.accountForm.value.accountDescription;
+        this.account.fees = this.accountForm.value.accountFees;
         this.accountService.updateAccount(this.account);
-        if (this.data && fixedImg) {
-            console.log('uploadddddd');
-            this.uploadService.uploadAccountImage(this.account, fixedImg);
+
+        if (this.data && this.data.image) {
+            const fixedImg = this.data.image.split(/,(.+)/)[1];
+            if (this.data && fixedImg) {
+                console.log('uploadddddd');
+                this.uploadService.uploadAccountImage(this.account, fixedImg);
+            }
         }
         this.router.navigate(['/user-profile'])
     }

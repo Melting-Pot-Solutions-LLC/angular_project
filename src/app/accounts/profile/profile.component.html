@@ -9,14 +9,14 @@
                     <a href="#avatar"><img [src]="data && data.image ? data.image : '../assets/img/default-user.png'" alt="..."></a>
                     </div>
                 <div class="name">
-                    <h4 class="title">{{account.title}}<br /></h4>
+                    <h4 class="title">{{account.title ? account.title : defaultAccount.title}}<br /></h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>{{account.description}}</p>
+                    <p>{{account.description ? account.description : defaultAccount.description}}</p>
                     <br />
-                    <h4 class="title">Fees: {{account.fees}}</h4>
+                    <h4 class="title">Fees: {{account.fees ? account.fees : defaultAccount.fees}}</h4>
                     <br>
                     <button routerLink="./edit" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Edit Profile</button>
                 </div>

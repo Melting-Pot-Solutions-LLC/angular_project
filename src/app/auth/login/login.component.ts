@@ -12,6 +12,8 @@ import {AccountService} from '../../accounts/account.service';
 export class LoginComponent implements OnInit {
     test: Date = new Date();
     errorMessage: string = null;
+    email: string;
+    password: string;
 
     constructor(private authService: AuthService,
                 private accountService: AccountService,
@@ -21,13 +23,13 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
     }
 
-    onLogin(ngForm: NgForm) {
-        const email = ngForm.value.email;
-        const password = ngForm.value.password;
-        this.authService.login(email, password)
+    onLogin() {
+        this.authService.login(this.email, this.password)
             .subscribe(user => {
                     this.router.navigate(['/user-profile']);
-                    this.accountService.setupDefaultAccount(user.uid);
+                    this.accountService.getAccountById(user.uid).subscribe(account => {
+                        this.accountService.changeAccount(account);
+                    });
                     this.authService.setAuthState(user);
                 }, error => {
                     this.errorMessage = error;

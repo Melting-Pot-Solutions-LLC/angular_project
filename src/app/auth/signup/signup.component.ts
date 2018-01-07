@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {AccountService} from '../../accounts/account.service';
 import {Router} from '@angular/router';
+import {Account} from '../../accounts/account.model';
 
 @Component({
     selector: 'app-signup',
@@ -12,6 +13,8 @@ import {Router} from '@angular/router';
 export class SignupComponent implements OnInit {
     test: Date = new Date();
     errorMessage: string = null;
+    email: string;
+    password: string;
 
     constructor(private authService: AuthService,
                 private accountService: AccountService,
@@ -19,18 +22,15 @@ export class SignupComponent implements OnInit {
 
     ngOnInit() {}
 
-    onRegister(ngForm: NgForm) {
-        const email = ngForm.value.email;
-        const password = ngForm.value.password;
-        this.authService.signUp(email, password)
+    onRegister() {
+        this.authService.signUp(this.email, this.password)
             .subscribe(user => {
-                this.authService.login(email, password).subscribe(loggedUser => {
+                this.authService.login(this.email, this.password).subscribe(loggedUser => {
                         this.router.navigate(['/user-profile']);
-                        this.accountService.setupDefaultAccount(loggedUser.uid);
-                        this.accountService.defaultAccount.id = loggedUser.uid;
-                        this.accountService.defaultAccount.email = loggedUser.email;
-                        this.accountService.saveAccount(this.accountService.defaultAccount);
+                        this.accountService.saveNewAccount(loggedUser.uid);
                         this.authService.setAuthState(loggedUser);
+                    }, error => {
+                        this.errorMessage = error;
                     }
                 );
             }, error => {

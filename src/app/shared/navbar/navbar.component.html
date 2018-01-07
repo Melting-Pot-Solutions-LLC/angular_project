@@ -14,8 +14,9 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" *ngIf="!isDocumentation()">
-                    <a [routerLink]="['/landing']" class="nav-link" target="_blank"><i class="nc-icon nc-book-bookmark"></i> Home</a>
+                    <a [routerLink]="['/landing']" class="nav-link" target="_blank"><i class="nc-icon nc-bank"></i> Home</a>
                 </li>
+
                 <!-- <li class="nav-item" *ngIf="isHome()">
                     <a href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=pk2-free-local" target="_blank" class="btn btn-danger btn-round disabled">Upgrade to Pro</a>
                 </li> -->
@@ -25,11 +26,11 @@
                 </li>
                 <ng-template [ngIf]="authService.isAuthenticated()">
                     <li class="nav-item">
-                        <a [routerLink]="['/user-profile']"  class="nav-link"><i class="nc-icon nc-layout-11"></i>Profile</a>
+                        <a [routerLink]="['/user-profile']"  class="nav-link"><i class="nc-icon nc-circle-10"></i>Profile</a>
                         <!-- <a [routerLink]="['/home']" *ngIf="isDocumentation()" class="nav-link">Back to Kit</a> -->
                     </li>
                     <li class="nav-item">
-                        <a [routerLink]="['/landing']" (click)="onLogout()"  class="nav-link"><i class="nc-icon nc-layout-11"></i>Logout</a>
+                        <a [routerLink]="['/landing']" (click)="onLogout()"  class="nav-link"><i class="nc-icon nc-button-power"></i>Logout</a>
                         <!-- <a [routerLink]="['/home']" *ngIf="isDocumentation()" class="nav-link">Back to Kit</a> -->
                     </li>
                 </ng-template>

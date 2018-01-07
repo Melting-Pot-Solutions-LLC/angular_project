@@ -9,12 +9,12 @@
             <div class="alert alert-warning" role="alert" *ngIf="errorMessage">
               <p>{{errorMessage}}</p>
             </div>
-            <form class="register-form" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+            <div class="register-form">
               <label>Email</label>
               <input type="text" class="form-control"
                      placeholder="Email"
                      name="email"
-                     ngModel
+                     [(ngModel)]="email"
                      required
                      email>
               <label>Password</label>
@@ -22,10 +22,11 @@
                      class="form-control"
                      placeholder="Password"
                      name="password"
+                     [(ngModel)]="password"
                      ngModel
                      required>
-              <button class="btn btn-danger btn-block btn-round">Login</button>
-            </form>
+              <button class="btn btn-danger btn-block btn-round" (click)="onLogin()">Login</button>
+            </div>
             <div class="forgot">
               <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
             </div>

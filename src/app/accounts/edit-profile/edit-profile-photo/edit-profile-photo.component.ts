@@ -18,6 +18,13 @@ export class EditProfilePhotoComponent implements OnInit {
     constructor(public activeModal: NgbActiveModal) {
         this.cropperSettings = new CropperSettings();
         this.cropperSettings.noFileInput = true;
+        this.cropperSettings.width = 150;
+        this.cropperSettings.height = 150;
+        this.cropperSettings.croppedWidth = 150;
+        this.cropperSettings.croppedHeight = 150;
+        this.cropperSettings.canvasWidth = 400;
+        this.cropperSettings.canvasHeight = 300;
+        this.cropperSettings.rounded = true;
         this.data = {};
     }
 
@@ -35,5 +42,9 @@ export class EditProfilePhotoComponent implements OnInit {
         };
 
         myReader.readAsDataURL(file);
+    }
+
+    onSavePhoto() {
+        this.activeModal.close('Close click');
     }
 }

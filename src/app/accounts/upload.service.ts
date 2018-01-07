@@ -4,12 +4,12 @@ import {ReplaySubject} from 'rxjs/ReplaySubject';
 import * as firebase from 'firebase/app'
 import 'firebase/storage'
 import {AccountService} from './account.service';
+import {Account} from './account.model';
 
 @Injectable()
 export class UploadService {
 
-    constructor(private db: AngularFireDatabase,
-                private accountService: AccountService) {
+    constructor(private db: AngularFireDatabase) {
     }
 
     uploadAccountImage(account, image) {
@@ -26,18 +26,13 @@ export class UploadService {
     getAccountImage(account: Account): ReplaySubject<any> {
         const resultSubject = new ReplaySubject(1);
         const storage = firebase.storage();
-
-        this.accountService.getAccountById(account.id).subscribe(
-            account => {
-                if (account.image.path != null) {
-                    const pathReference = storage.ref(account.image.path);
-                    pathReference.getDownloadURL().then(url => {
-                        const result = {image: url, path: account.image.path, filename: account.image.filename};
-                        resultSubject.next(result);
-                    })
-                }
-            }
-        );
+        if (account.image) {
+            const pathReference = storage.ref(account.image.path);
+            pathReference.getDownloadURL().then(url => {
+                const result = {image: url, path: account.image.path, filename: account.image.name};
+                resultSubject.next(result);
+            })
+        }
         return resultSubject;
     }
 }

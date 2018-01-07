@@ -11,32 +11,34 @@
       </div>
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto text-center">
+            <button (click)="open()" class="btn btn-outline-default btn-round">Change image</button>
+        </div>
+      </div>
+      <div class="row">
+        <form class="col-md-6 ml-auto mr-auto text-center" (ngSubmit)="onSave()" #accountForm="ngForm">
           <div class="name">
             <br>
-            <button (click)="open()" class="btn btn-outline-default btn-round">Change image</button>
             <h3>Company Title</h3>
             <input type="text" class="form-control"
-                   placeholder="{{account.title}}"
+                   placeholder="{{defaultAccount.title}}"
                    name="accountTitle"
-                   [(ngModel)]="account.title">
-            <h6 class="description">Title Company</h6>
+                   [ngModel]="account.title">
           </div>
           <h3>Company Description</h3>
           <textarea type="text" class="form-control"
-                    placeholder="{{account.description}}"
+                    placeholder="{{defaultAccount.description}}"
                     rows="6"
                     name="accountDescription"
-                    [(ngModel)]="account.description"></textarea>
+                    [ngModel]="account.description"></textarea>
           <h3>Fees</h3>
           <input type="number" class="form-control"
-                 placeholder="{{account.fees}}"
+                 placeholder="{{defaultAccount.fees}}"
                  name="accountFees"
-                 [(ngModel)]="account.fees">
-          <h6 class="description">Title Company</h6>
+                 [ngModel]="account.fees">
           <br/>
-          <button (click)="onSave()" class="btn btn-outline-primary btn-round"><i class="fa fa-cog"></i> Save</button>
-          <button routerLink="../" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Back</button>
-        </div>
+          <button routerLink="../" class="btn btn-outline-default btn-round"><i class="fa fa-arrow-left"></i> Back</button>
+          <button type="submit" class="btn btn-outline-primary btn-round"><i class="fa fa-floppy-o"></i> Save</button>
+        </form>
       </div>
       <br/>
       <div class="nav-tabs-navigation">
