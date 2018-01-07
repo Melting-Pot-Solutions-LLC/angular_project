@@ -200,9 +200,9 @@
                         <input type="button" name="next" class="next action-button" value="Get Contacts"/>
                         -->
                     </fieldset>
-                    <div id="contactForm" *ngIf="contactForm">
-                            <h2 class="fs-title">Personal Website</h2>
-                            <h3 class="fs-subtitle">Tell us something more about you</h3>
+                    <div id="contactForm" *ngIf="contactForm" [@contact]>
+                            <h2 class="fs-title">Contact Information</h2>
+                            <h3 class="fs-subtitle">Tell us more about you</h3>
                             <input type="text" name="fname" placeholder="First Name"/>
                             <input type="text" name="lname" placeholder="Last Name"/>
                             <input type="text" name="email" placeholder="Email"/>

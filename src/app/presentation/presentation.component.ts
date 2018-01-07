@@ -1,5 +1,13 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
 import { JasperoAlertsModule, AlertsService } from '@jaspero/ng2-alerts';
+import {Router} from '@angular/router';
+import {
+    trigger,
+    style,
+    animate,
+    transition
+} from '@angular/animations';
+
 
 declare var jquery:any;
 declare var $:any;
@@ -8,30 +16,42 @@ declare var $:any;
 @Component({
     selector: 'app-presentation',
     templateUrl: './presentation.component.html',
-    styleUrls: ['./presentation.component.scss']
+    styleUrls: ['./presentation.component.scss'],
+    animations: [
+        trigger('contact', [
+            transition('void => *', [
+                style({transform: 'scale3d(.3, .3, .3)'}),
+                animate('500ms ease')
+            ])
+        ])
+    ]
 })
 
 export class PresentationComponent implements OnInit {
-	contactForm = false;
+    contactForm = false;
 
-  constructor(private _alert: AlertsService)
-  {
+  constructor(private _alert: AlertsService,
+              private router: Router) {
 
   }
 
-    open(feature: boolean)
-    {
+    open(feature: boolean) {
         this.contactForm = true;
     }
 
-  send()
-  {
+    close() {
+      this.router.navigate(['/landing']);
+    }
+
+    send() {
 	  	this._alert.create('success', "Your information will be received by the title companies you selected", {
 		overlay: true,
 		overlayClickToClose: true,
 		showCloseButton: true,
 		duration: 5000
 	});
+        setTimeout(() => this.router.navigate(['/landing']), 1200);
+
 
   }
   ngOnInit() {
