@@ -30,6 +30,15 @@ export class AuthService {
         return this.authState !== null;
     }
 
+    sendEmailVerification() {
+        this.afAuth.auth.currentUser.sendEmailVerification();
+    }
+
+    resetPassword(email: string) {
+        const promise = this.afAuth.auth.sendPasswordResetEmail(email);
+        return Observable.fromPromise(promise);
+    }
+
     // Returns current user UID
     get currentUserId(): string {
         return this.isAuthenticated() ? this.authState.uid : '';

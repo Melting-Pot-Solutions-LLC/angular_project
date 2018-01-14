@@ -38,7 +38,7 @@
                                 <button class="btn btn-danger btn-block btn-round" (click)="onRegister()">Register</button>
                             </div>
                             <div class="forgot">
-                                <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                                <a [routerLink]="['/reset-password']" class="btn btn-link btn-danger">Forgot password?</a>
                             </div>
                             <div class="forgot">
                                 <a [routerLink]="['/login']" class="btn btn-link btn-danger">Already Registered?</a>

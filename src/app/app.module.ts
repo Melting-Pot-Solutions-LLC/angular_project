@@ -31,6 +31,7 @@ import {AccountService} from './accounts/account.service';
 import {ImageCropperComponent} from 'ng2-img-cropper';
 import { EditProfilePhotoComponent } from './accounts/edit-profile/edit-profile-photo/edit-profile-photo.component';
 import {UploadService} from './accounts/upload.service';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {UploadService} from './accounts/upload.service';
       LoginComponent,
       EditProfileComponent,
       ImageCropperComponent,
-      EditProfilePhotoComponent
+      EditProfilePhotoComponent,
+      ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

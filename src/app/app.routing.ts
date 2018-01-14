@@ -12,6 +12,7 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 import {LoginComponent} from './auth/login/login.component';
 import {AuthGuardService} from './auth/auth-guard.service';
 import {EditProfileComponent} from './accounts/edit-profile/edit-profile.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 const routes: Routes = [
     // { path: 'home',             component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'landing',          component: LandingComponent },
     { path: 'signup',           component: SignupComponent },
     { path: 'login',            component: LoginComponent },
+    { path: 'reset-password',            component: ResetPasswordComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
     { path: 'presentation',     component: PresentationComponent },
     { path: '**', redirectTo: '/landing'}

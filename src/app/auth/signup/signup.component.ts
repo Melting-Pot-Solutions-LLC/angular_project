@@ -4,6 +4,7 @@ import {AuthService} from '../auth.service';
 import {AccountService} from '../../accounts/account.service';
 import {Router} from '@angular/router';
 import {Account} from '../../accounts/account.model';
+import { AlertsService } from '@jaspero/ng2-alerts/dist';
 
 @Component({
     selector: 'app-signup',
@@ -18,21 +19,24 @@ export class SignupComponent implements OnInit {
 
     constructor(private authService: AuthService,
                 private accountService: AccountService,
-                private router: Router) { }
+                private router: Router,
+                private alert: AlertsService) { }
 
     ngOnInit() {}
 
     onRegister() {
         this.authService.signUp(this.email, this.password)
             .subscribe(user => {
-                this.authService.login(this.email, this.password).subscribe(loggedUser => {
-                        this.router.navigate(['/user-profile']);
-                        this.accountService.saveNewAccount(loggedUser.uid);
-                        this.authService.setAuthState(loggedUser);
-                    }, error => {
-                        this.errorMessage = error;
-                    }
-                );
+                this.accountService.saveNewAccount(user.uid);
+                this.authService.sendEmailVerification();
+                this.authService.logout();
+                this.alert.create('success', 'Please check your mailbox to verify account.', {
+                    overlay: true,
+                    overlayClickToClose: true,
+                    showCloseButton: true,
+                    duration: 10000
+                });
+                setTimeout(() => this.router.navigate(['/login']), 1000);
             }, error => {
                 this.errorMessage = error;
             }
