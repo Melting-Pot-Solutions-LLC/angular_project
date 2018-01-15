@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModal, NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JasperoAlertsModule } from '@jaspero/ng2-alerts';
@@ -33,6 +33,8 @@ import { EditProfilePhotoComponent } from './accounts/edit-profile/edit-profile-
 import {UploadService} from './accounts/upload.service';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
+import { StarRatingModule } from 'angular-star-rating';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,9 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireAuthModule,
       AngularFireDatabaseModule,
-      NgbModalModule
+      NgbModalModule,
+      StarRatingModule.forRoot(),
+      ReactiveFormsModule
   ],
   providers: [AuthService, AuthGuardService, AccountService, UploadService],
   bootstrap: [AppComponent],
