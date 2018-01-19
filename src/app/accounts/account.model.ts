@@ -7,5 +7,7 @@ export class Account {
     image: {
         path: string,
         name: string,
-    }
+    };
+    rating: number;
+    data: any;
 }

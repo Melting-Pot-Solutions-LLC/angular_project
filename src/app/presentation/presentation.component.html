@@ -122,14 +122,14 @@
                                 <table class="table">
                                     <tbody>
                                     <!-- content block -->
-                                    <tr>
+                                    <tr *ngFor="let company of accounts; let i = index">
                                         <th class="align-middle">
                                             <div class="card-avatar d-none d-md-block">
-                                                <a href="#avatar"><img src="assets/img/example-logo.jpeg" alt="..."></a>
+                                                <a href="#avatar"><img [src]="company.image ? company.data['image'] : 'assets/img/default-user.png'" alt="..."></a>
                                             </div>
                                         </th>
-                                        <td>American Title Company<br>
-                                            <star-rating-comp [starType]="'svg'" [rating]="4"></star-rating-comp>
+                                        <td>{{company.title}}<br>
+                                            <star-rating-comp [starType]="'svg'" [rating]="company.rating"></star-rating-comp>
                                             <a href="#">Website</a>
                                         </td>
                                         <td class="align-middle">$1550</td>
@@ -139,26 +139,6 @@
                                                     <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="open()"/>
                                                     <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="open()"></i>
                                                 </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle">
-                                            <div class="card-avatar d-none d-md-block">
-                                                <a href="#avatar"><img src="assets/img/example-logo.jpeg" alt="..."></a>
-                                            </div>
-                                        </th>
-                                        <td>American Title Company<br>
-                                            <star-rating-comp [starType]="'svg'" [rating]="4"></star-rating-comp>
-                                            <a href="#">Website</a>
-                                        </td>
-                                        <td class="align-middle">$1550</td>
-                                        <td class="align-middle">
-                                            <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="open()"/>
-                                                        <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="open()"></i>
-                                                    </label>
                                             </div>
                                         </td>
                                     </tr>

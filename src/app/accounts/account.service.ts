@@ -20,6 +20,10 @@ export class AccountService {
         this.defaultAccount = new Account();
     }
 
+    getAccounts(): Observable<any[]> {
+        return this.db.list('accounts').valueChanges()
+    }
+
     saveAccount(account: Account) {
         this.db.object('/accounts/' + account.id).set(account);
         this.changeAccount(account);
@@ -48,6 +52,7 @@ export class AccountService {
         account.title = '';
         account.description = '';
         account.fees = 0;
+        account.rating = 0;
         this.saveAccount(account);
     }
 }
