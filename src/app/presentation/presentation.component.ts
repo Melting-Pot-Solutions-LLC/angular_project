@@ -34,6 +34,7 @@ export class PresentationComponent implements OnInit {
     contactForm = false;
     accounts: Account[];
     images: any[];
+    isDataAvailable: boolean;
 
     constructor(private _alert: AlertsService,
                 private router: Router,
@@ -64,8 +65,11 @@ export class PresentationComponent implements OnInit {
 
 
     ngOnInit() {
+        this.isDataAvailable = false;
         this.accountService.getAccounts().subscribe(accounts => {
+            console.log(accounts);
             this.accounts = accounts;
+            this.isDataAvailable = true;
             this.images = [];
             for (const account of this.accounts) {
                 if (account['image']) {
@@ -76,7 +80,6 @@ export class PresentationComponent implements OnInit {
             }
 
         });
-        console.log(this.accounts);
 
 
 //jQuery time

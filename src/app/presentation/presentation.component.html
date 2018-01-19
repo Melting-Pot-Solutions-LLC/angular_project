@@ -125,7 +125,7 @@
                                     <tr *ngFor="let company of accounts; let i = index">
                                         <th class="align-middle">
                                             <div class="card-avatar d-none d-md-block">
-                                                <a href="#avatar"><img [src]="company.image ? company.data['image'] : 'assets/img/default-user.png'" alt="..."></a>
+                                                <a href="#avatar" *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
                                             </div>
                                         </th>
                                         <td>{{company.title}}<br>
