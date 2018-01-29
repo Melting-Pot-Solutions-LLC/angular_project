@@ -42,6 +42,10 @@ export class AccountService {
     getDefaultAccount(): Account {
         this.defaultAccount.title = 'Your company title';
         this.defaultAccount.description = 'Your company description';
+        this.defaultAccount.phone = 'Your company phone number';
+        this.defaultAccount.address = 'Your company physical addres';
+        this.defaultAccount.website = 'Your company website';
+        this.defaultAccount.facebook = 'Your company facebook';
         this.defaultAccount.fees = 0;
         return this.defaultAccount;
     }

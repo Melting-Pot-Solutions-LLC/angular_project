@@ -11,6 +11,25 @@
                 <div class="name">
                     <h4 class="title">{{account.title ? account.title : defaultAccount.title}}<br /></h4>
                 </div>
+                <div class="profile-info">
+                    <div class="col-xs-6 item text-center">
+                        <b class="item-label"><i class="fa fa-phone"></i></b> <span>{{account.phone ? account.phone : defaultAccount.phone}}</span>
+                    </div>
+                    <div class="col-xs-6 item text-center">
+                        <b class="item-label"><i class="fa fa-map-marker"></i></b> <span>{{account.address ? account.address : defaultAccount.address}}</span>
+                    </div>
+
+                    <div class="col-xs-6 item text-center">
+                        <b class="item-label"><i class="fa fa-internet-explorer"></i></b>
+                        <span>
+                            <a *ngIf="account.website" routerLink="{{account.website}}" target="_blank">{{account.website}}</a>
+                            <span *ngIf="! account.website">{{defaultAccount.website}}</span>
+                        </span>
+                    </div>
+                    <div class="col-xs-6 item text-center">
+                        <b class="item-label"><i class="fa fa-facebook"></i></b> <span>{{account.facebook ? account.facebook : defaultAccount.facebook}}</span>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">

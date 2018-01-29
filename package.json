@@ -28,6 +28,7 @@
     "angular-star-rating": "^3.0.8",
     "angularfire2": "5.0.0-rc.3",
     "bootstrap": "4.0.0-beta",
+    "bootstrap-grid-only": "^1.0.0",
     "core-js": "^2.4.1",
     "firebase": "4.8.0",
     "grpc": "^1.8.0",

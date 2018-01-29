@@ -24,6 +24,41 @@
                    name="accountTitle"
                    [ngModel]="account.title">
           </div>
+
+          <div>
+            <h3>Company Phone number</h3>
+            <input type="text" class="form-control"
+                   placeholder="{{defaultAccount.phone}}"
+                   name="accountPhone"
+                   [ngModel]="account.phone">
+          </div>
+
+          <div>
+            <h3>Company Physical address</h3>
+            <input type="text" class="form-control"
+                   placeholder="{{defaultAccount.address}}"
+                   name="accountAddress"
+                   [ngModel]="account.address">
+          </div>
+
+          <div>
+            <h3>Company Website</h3>
+            <input type="text" class="form-control"
+                   placeholder="{{defaultAccount.website}}"
+                   name="accountWebsite"
+                   [ngModel]="account.website">
+          </div>
+
+
+          <div>
+            <h3>Company Facebook</h3>
+            <input type="text" class="form-control"
+                   placeholder="{{defaultAccount.facebook}}"
+                   name="accountFacebook"
+                   [ngModel]="account.facebook">
+          </div>
+
+
           <h3>Company Description</h3>
           <textarea type="text" class="form-control"
                     placeholder="{{defaultAccount.description}}"

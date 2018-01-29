@@ -47,6 +47,11 @@ export class EditProfileComponent implements OnInit {
         this.account.title = this.accountForm.value.accountTitle;
         this.account.description = this.accountForm.value.accountDescription;
         this.account.fees = this.accountForm.value.accountFees;
+        this.account.phone = this.accountForm.value.accountPhone;
+        this.account.address = this.accountForm.value.accountAddress;
+        this.account.website = this.accountForm.value.accountWebsite;
+        this.account.facebook = this.accountForm.value.accountFacebook;
+
         this.accountService.updateAccount(this.account);
 
         if (this.data && this.data.image) {

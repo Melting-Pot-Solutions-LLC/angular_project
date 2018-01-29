@@ -3,3 +3,18 @@
   height: 150px;
   border-radius: 50%;
 }
+.profile-info {
+  margin: 0 auto;
+  height: auto;
+  overflow: hidden;
+  padding: 1em 0;
+  .item {
+    height: auto;
+    overflow: hidden;
+    padding: 1em 0 !important;
+    float: left;
+    .item-label {
+      padding-right: 1em;
+    }
+  }
+}
