@@ -7,6 +7,7 @@ import {
     animate,
     transition
 } from '@angular/animations';
+import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AccountService} from '../accounts/account.service';
@@ -36,9 +37,9 @@ export class PresentationComponent implements OnInit {
     contactForm = false;
     accounts: Account[];
     images: any[];
+    formData: {};
     isDataAvailable: boolean;
     // TODO refactor while implementing whole form
-    userEmail: string;
     selectedCompanyEmail: string;
 
     constructor(private db: AngularFireDatabase,
@@ -47,7 +48,11 @@ export class PresentationComponent implements OnInit {
                 private accountService: AccountService,
                 private http: HttpClient,
                 private uploadService: UploadService) {
-
+        this.formData = {
+            merge_country: null,
+            merge_state: null,
+            merge_city: null
+        };
     }
 
     selectCompany(companyEmail: string) {
@@ -65,9 +70,9 @@ export class PresentationComponent implements OnInit {
 
     sendEmailToClient() {
         let clientEmail = {
-            apikey: "020b2211-f473-4c84-9077-daadecad038b",
-            template: "11517",
-            to: this.userEmail
+            apikey: "accce986-bb6a-4643-bc40-9ee2c55178d1",
+            template: "475",
+            to: this.formData['merge_useremail']
         };
 
         let clientFormData = new FormData();
@@ -80,8 +85,8 @@ export class PresentationComponent implements OnInit {
 
     sendEmailToAdmin() {
         let companyEmail = {
-            apikey: "020b2211-f473-4c84-9077-daadecad038b",
-            template: "11537",
+            apikey: "accce986-bb6a-4643-bc40-9ee2c55178d1",
+            template: "477",
             to: this.selectedCompanyEmail
         };
 
@@ -99,6 +104,7 @@ export class PresentationComponent implements OnInit {
                 return this.sendEmailToAdmin();
             })
             .then(res => {
+                console.log(res);
                 this._alert.create('success', "Your information will be received by the title companies you selected", {
                     overlay: true,
                     overlayClickToClose: true,
