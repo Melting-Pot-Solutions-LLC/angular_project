@@ -7,6 +7,8 @@ import {
     animate,
     transition
 } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
+import {AngularFireDatabase} from 'angularfire2/database';
 import {AccountService} from '../accounts/account.service';
 import {Account} from '../accounts/account.model';
 import {UploadService} from '../accounts/upload.service';
@@ -35,15 +37,25 @@ export class PresentationComponent implements OnInit {
     accounts: Account[];
     images: any[];
     isDataAvailable: boolean;
+    // TODO refactor while implementing whole form
+    userEmail: string;
+    selectedCompanyEmail: string;
 
-    constructor(private _alert: AlertsService,
+    constructor(private db: AngularFireDatabase,
+                private _alert: AlertsService,
                 private router: Router,
                 private accountService: AccountService,
+                private http: HttpClient,
                 private uploadService: UploadService) {
 
     }
 
-    open(feature: boolean) {
+    selectCompany(companyEmail: string) {
+        this.selectedCompanyEmail = companyEmail;
+        this.open();
+    }
+
+    open(feature?: boolean) {
         this.contactForm = true;
     }
 
@@ -51,16 +63,74 @@ export class PresentationComponent implements OnInit {
         this.router.navigate(['/landing']);
     }
 
-    send() {
-        this._alert.create('success', "Your information will be received by the title companies you selected", {
-            overlay: true,
-            overlayClickToClose: true,
-            showCloseButton: true,
-            duration: 5000
+    sendEmailToClient() {
+        let clientEmail = {
+            apikey: "020b2211-f473-4c84-9077-daadecad038b",
+            template: "11517",
+            to: this.userEmail
+        };
+
+        let clientFormData = new FormData();
+        Object.keys(clientEmail).forEach(key => {
+            clientFormData.append(key, clientEmail[key]);
         });
-        setTimeout(() => this.router.navigate(['/landing']), 1200);
 
+        return this.http.post('https://api.elasticemail.com/v2/email/send', clientFormData).toPromise()
+    }
 
+    sendEmailToAdmin() {
+        let companyEmail = {
+            apikey: "020b2211-f473-4c84-9077-daadecad038b",
+            template: "11537",
+            to: this.selectedCompanyEmail
+        };
+
+        let companyFormData = new FormData();
+        Object.keys(companyEmail).forEach(key => {
+            companyFormData.append(key, companyEmail[key]);
+        });
+
+        return this.http.post('https://api.elasticemail.com/v2/email/send', companyFormData).toPromise()
+    }
+
+    send() {
+        this.sendEmailToClient()
+            .then(() => {
+                return this.sendEmailToAdmin();
+            })
+            .then(res => {
+                this._alert.create('success', "Your information will be received by the title companies you selected", {
+                    overlay: true,
+                    overlayClickToClose: true,
+                    showCloseButton: true,
+                    duration: 5000
+                });
+                setTimeout(() => this.router.navigate(['/landing']), 1200);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
+        /**
+         * TODO should be this way, once subscription plan gets upgraded
+         *
+         * Push new request no firebae node to trigger cloud functionwhich will send all necessary emails
+         */
+        // this.db.list('userRequests')
+        //     .push({
+        //         'userEmail': this.userEmail,
+        //         'companyEmail': this.selectedCompanyEmail,
+        //         'timestamp': Date.now()
+        //     })
+        //     .then(() => {
+        //         this._alert.create('success', "Your information will be received by the title companies you selected", {
+        //             overlay: true,
+        //             overlayClickToClose: true,
+        //             showCloseButton: true,
+        //             duration: 5000
+        //         });
+        //         setTimeout(() => this.router.navigate(['/landing']), 1200);
+        //     });
     }
 
 

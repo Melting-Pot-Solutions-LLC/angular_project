@@ -136,8 +136,8 @@
                                         <td class="align-middle">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="open()"/>
-                                                    <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="open()"></i>
+                                                    <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="selectCompany(company.email)"/>
+                                                    <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="selectCompany(company.email)"></i>
                                                 </label>
                                             </div>
                                         </td>
@@ -157,7 +157,7 @@
                             <h3 class="fs-subtitle">Tell us more about you</h3>
                             <input type="text" name="fname" placeholder="First Name"/>
                             <input type="text" name="lname" placeholder="Last Name"/>
-                            <input type="text" name="email" placeholder="Email"/>
+                            <input type="text" name="email" [(ngModel)]="userEmail" placeholder="Email"/>
                             <input type="text" name="phone" placeholder="Phone"/>
                             <input type="button" name="next" class="action-button" value="Get In Touch" (click)="send()"/>
                     </div>

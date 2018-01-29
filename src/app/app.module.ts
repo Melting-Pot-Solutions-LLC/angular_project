@@ -5,6 +5,7 @@ import {NgbModal, NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JasperoAlertsModule } from '@jaspero/ng2-alerts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app.routing';
 
@@ -58,6 +59,7 @@ import { StarRatingModule } from 'angular-star-rating';
     AppRoutingModule,
     HomeModule,
     JasperoAlertsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireAuthModule,
