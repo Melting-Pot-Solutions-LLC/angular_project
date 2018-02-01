@@ -247,3 +247,27 @@ body {
     background: #C5C5F1;
     text-decoration: none;
 }
+
+.form-group{
+    .error-msg{
+        text-align: left;
+        display: none;
+        color: #ff0000;
+        font-size: 0.9em;
+        padding: 0 0 1em 0;
+        font-weight: 500;
+    }
+    &.has-error{
+        input, select{
+            border: 1px solid #ff0000 !important;
+        }
+        .error-msg{
+            display: block;
+        }
+    }
+}
+
+input[disabled]{
+    opacity:0.7 !important;
+    pointer-events: none !important;
+}

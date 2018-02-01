@@ -89,8 +89,9 @@ export class PresentationComponent implements OnInit {
             template: "477",
             to: this.selectedCompanyEmail
         };
-
-        let companyFormData = new FormData();
+        companyEmail = Object.assign(companyEmail, this.formData);
+        console.log(companyEmail);
+            let companyFormData = new FormData();
         Object.keys(companyEmail).forEach(key => {
             companyFormData.append(key, companyEmail[key]);
         });
