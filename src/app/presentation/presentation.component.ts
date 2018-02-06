@@ -70,8 +70,8 @@ export class PresentationComponent implements OnInit {
 
     sendEmailToClient() {
         let clientEmail = {
-            apikey: "accce986-bb6a-4643-bc40-9ee2c55178d1",
-            template: "475",
+            apikey: "9440927c-04d7-4f01-8cdc-698cfc2be1da",
+            template: "12010",
             to: this.formData['merge_useremail']
         };
 
@@ -85,8 +85,8 @@ export class PresentationComponent implements OnInit {
 
     sendEmailToAdmin() {
         let companyEmail = {
-            apikey: "accce986-bb6a-4643-bc40-9ee2c55178d1",
-            template: "477",
+            apikey: "9440927c-04d7-4f01-8cdc-698cfc2be1da",
+            template: "12015",
             to: this.selectedCompanyEmail
         };
         companyEmail = Object.assign(companyEmail, this.formData);
