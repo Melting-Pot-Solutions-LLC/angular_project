@@ -105,6 +105,10 @@ body {
     font-family: montserrat;
     color: #2C3E50;
     font-size: 13px;
+
+    &.ng-touched.ng-invalid{
+        border-color: red;
+    }
 }
 
 #msform input:focus, #msform textarea:focus {

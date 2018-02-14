@@ -7,12 +7,14 @@ import {
     animate,
     transition
 } from '@angular/animations';
-import { NgForm } from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AccountService} from '../accounts/account.service';
 import {Account} from '../accounts/account.model';
 import {UploadService} from '../accounts/upload.service';
+import {ActionFormModel} from '../shared/models/action-form.model';
+import {ActionFormService} from '../shared/services/action-form.service';
 
 
 declare var jquery:any;
@@ -41,18 +43,124 @@ export class PresentationComponent implements OnInit {
     isDataAvailable: boolean;
     // TODO refactor while implementing whole form
     selectedCompanyEmail: string;
+    actionFormModel: ActionFormModel;
+    actionUserForm: FormGroup;
+
+    countries = ['County*', 'Richland', 'Greenville', 'Charleston'];
+    states = ['State*', 'DC', 'VA'];
+    cities = ['City*', 'Columbia', 'Greenville', 'Washington'];
 
     constructor(private db: AngularFireDatabase,
                 private _alert: AlertsService,
                 private router: Router,
                 private accountService: AccountService,
                 private http: HttpClient,
-                private uploadService: UploadService) {
+                private uploadService: UploadService,
+                private actionFormService: ActionFormService,
+                private fb: FormBuilder) {
         this.formData = {
             merge_country: null,
             merge_state: null,
             merge_city: null
         };
+    }
+
+    ngOnInit() {
+        this.isDataAvailable = false;
+        this.actionFormModel = new ActionFormModel();
+
+        this.initSecondStepForm();
+
+        this.accountService.getAccounts().subscribe(accounts => {
+            console.log(accounts);
+            this.accounts = accounts;
+            this.isDataAvailable = true;
+            this.images = [];
+            for (const account of this.accounts) {
+                if (account['image']) {
+                    this.uploadService.getAccountImage(account).subscribe(image => {
+                        account.data = image;
+                    });
+                }
+            }
+
+        });
+
+        // jQuery time
+        let current_fs, next_fs, previous_fs; // fieldsets
+        let animating; // flag to prevent quick multi-click glitches
+
+        $('.next').click(function () {
+            if (animating) {
+                return false;
+            }
+            animating = true;
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            // activate next step on progressbar using the index of next_fs
+            $('#progressbar li').eq($('fieldset').index(next_fs)).addClass('active');
+
+            // show the next fieldset
+            next_fs.show();
+            current_fs.hide();
+            animating = false;
+        });
+
+        $('.previous').click(function () {
+            if (animating) {
+                return false;
+            }
+            animating = true;
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            // de-activate current step on progressbar
+            $('#progressbar li').eq($('fieldset').index(current_fs)).removeClass('active');
+
+            // show the previous fieldset
+            previous_fs.show();
+            current_fs.hide();
+            animating = false;
+        });
+
+        $('.submit').click(function () {
+            return false;
+        })
+    }
+
+    initSecondStepForm() {
+        this.actionUserForm = this.fb.group({
+            type: ['', [Validators.required]],
+            price: [null, [Validators.required]],
+            loanAmount: [null, [Validators.required]],
+            zip: [null, [Validators.required]],
+            country: [this.countries[0], [Validators.required]],
+            state: [this.states[0], [Validators.required]],
+            city: [this.cities[0], [Validators.required]],
+            firstName: ['', [Validators.required]],
+            lastName: ['', [Validators.required]],
+            email: ['', [Validators.required, Validators.email]],
+            phone: ['', [Validators.required]]
+        });
+    }
+
+    isControlInvalid(controlName: string): boolean {
+        const control = this.actionUserForm.controls[controlName];
+        return control.invalid && control.touched;
+    }
+
+    setType(type: string) {
+        this.actionUserForm.patchValue({type: type});
+    }
+
+    calculateTotals() {
+        console.log(this.actionUserForm.value);
+        for (const company of this.accounts) {
+            company.total_price = this.actionFormService.getTotal(<ActionFormModel>this.actionUserForm.value, company.fees);
+            console.log(company.total_price);
+        }
     }
 
     selectCompany(companyEmail: string) {
@@ -69,13 +177,13 @@ export class PresentationComponent implements OnInit {
     }
 
     sendEmailToClient() {
-        let clientEmail = {
-            apikey: "9440927c-04d7-4f01-8cdc-698cfc2be1da",
-            template: "12010",
-            to: this.formData['merge_useremail']
+        const clientEmail = {
+            apikey: '9440927c-04d7-4f01-8cdc-698cfc2be1da',
+            template: '12010',
+            to: this.actionUserForm.get['email'].value
         };
 
-        let clientFormData = new FormData();
+        const clientFormData = new FormData();
         Object.keys(clientEmail).forEach(key => {
             clientFormData.append(key, clientEmail[key]);
         });
@@ -85,13 +193,13 @@ export class PresentationComponent implements OnInit {
 
     sendEmailToAdmin() {
         let companyEmail = {
-            apikey: "9440927c-04d7-4f01-8cdc-698cfc2be1da",
-            template: "12015",
+            apikey: '9440927c-04d7-4f01-8cdc-698cfc2be1da',
+            template: '12015',
             to: this.selectedCompanyEmail
         };
         companyEmail = Object.assign(companyEmail, this.formData);
         console.log(companyEmail);
-            let companyFormData = new FormData();
+            const companyFormData = new FormData();
         Object.keys(companyEmail).forEach(key => {
             companyFormData.append(key, companyEmail[key]);
         });
@@ -106,7 +214,7 @@ export class PresentationComponent implements OnInit {
             })
             .then(res => {
                 console.log(res);
-                this._alert.create('success', "Your information will be received by the title companies you selected", {
+                this._alert.create('success', 'Your information will be received by the title companies you selected', {
                     overlay: true,
                     overlayClickToClose: true,
                     showCloseButton: true,
@@ -130,7 +238,7 @@ export class PresentationComponent implements OnInit {
         //         'timestamp': Date.now()
         //     })
         //     .then(() => {
-        //         this._alert.create('success', "Your information will be received by the title companies you selected", {
+        //         this._alert.create('success', 'Your information will be received by the title companies you selected', {
         //             overlay: true,
         //             overlayClickToClose: true,
         //             showCloseButton: true,
@@ -138,118 +246,6 @@ export class PresentationComponent implements OnInit {
         //         });
         //         setTimeout(() => this.router.navigate(['/landing']), 1200);
         //     });
-    }
-
-
-    ngOnInit() {
-        this.isDataAvailable = false;
-        this.accountService.getAccounts().subscribe(accounts => {
-            console.log(accounts);
-            this.accounts = accounts;
-            this.isDataAvailable = true;
-            this.images = [];
-            for (const account of this.accounts) {
-                if (account['image']) {
-                    this.uploadService.getAccountImage(account).subscribe(image => {
-                        account.data = image;
-                    });
-                }
-            }
-
-        });
-
-
-//jQuery time
-        var current_fs, next_fs, previous_fs; //fieldsets
-        var left, opacity, scale; //fieldset properties which we will animate
-        var animating; //flag to prevent quick multi-click glitches
-
-        $(".next").click(function () {
-            if (animating) return false;
-            animating = true;
-
-            current_fs = $(this).parent();
-            next_fs = $(this).parent().next();
-
-
-            //activate next step on progressbar using the index of next_fs
-            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-            //show the next fieldset
-            next_fs.show();
-            current_fs.hide();
-            animating = false;
-
-
-            //hide the current fieldset with style
-            // current_fs.animate({opacity: 0}, {
-            // 	step: function(now) {
-            // 		console.log("now " + now);
-            // 		//as the opacity of current_fs reduces to 0 - stored in "now"
-            // 		//1. scale current_fs down to 80%
-            // 		scale = 1 - (1 - now) * 0.2;
-            // 		//2. bring next_fs from the right(50%)
-            // 		left = (now * 50)+"%";
-            // 		//3. increase opacity of next_fs to 1 as it moves in
-            // 		opacity = 1 - now;
-            // 		current_fs.css({
-            //     'transform': 'scale(' + scale + ')',
-            //     'position': 'absolute'
-            //   });
-            // 		next_fs.css({'left': left, 'opacity': opacity});
-            // 	},
-            // 	duration: 800,
-            // 	complete: function(){
-            // 		current_fs.hide();
-            // 		animating = false;
-            // 	},
-            // 	//this comes from the custom easing plugin
-            // 	easing: 'easeInOutBack'
-            // });
-        });
-
-        $(".previous").click(function () {
-            if (animating) return false;
-            animating = true;
-
-            current_fs = $(this).parent();
-            previous_fs = $(this).parent().prev();
-
-            //de-activate current step on progressbar
-            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-            //show the previous fieldset
-            previous_fs.show();
-            current_fs.hide();
-            animating = false;
-            //hide the current fieldset with style
-// 	current_fs.animate({opacity: 0}, {
-// 		step: function(now) {
-// 			//as the opacity of current_fs reduces to 0 - stored in "now"
-// 			//1. scale previous_fs from 80% to 100%
-// 			scale = 0.8 + (1 - now) * 0.2;
-// 			//2. take current_fs to the right(50%) - from 0%
-// 			left = ((1 - now) * 50)+"%";
-// 			//3. increase opacity of previous_fs to 1 as it moves in
-// 			opacity = 1 - now;
-// 			current_fs.css({'left': left});
-// 			previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
-// 		},
-// 		duration: 800,
-// 		complete: function(){
-// 			current_fs.hide();
-// 			animating = false;
-// 		},
-// 		//this comes from the custom easing plugin
-// 		easing: 'easeInOutBack'
-// 	});
-        });
-
-        $(".submit").click(function () {
-            return false;
-        })
-
-
     }
 }
 

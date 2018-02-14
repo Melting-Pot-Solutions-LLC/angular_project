@@ -35,6 +35,7 @@ import {UploadService} from './accounts/upload.service';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 import { StarRatingModule } from 'angular-star-rating';
+import {ActionFormService} from './shared/services/action-form.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { StarRatingModule } from 'angular-star-rating';
       StarRatingModule.forRoot(),
       ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuardService, AccountService, UploadService],
+  providers: [AuthService, AuthGuardService, AccountService, UploadService, ActionFormService],
   bootstrap: [AppComponent],
     entryComponents: [EditProfilePhotoComponent]
 })

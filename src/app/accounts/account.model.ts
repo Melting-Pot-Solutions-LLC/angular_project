@@ -14,4 +14,5 @@ export class Account {
     };
     rating: number;
     data: any;
+    total_price: number;
 }

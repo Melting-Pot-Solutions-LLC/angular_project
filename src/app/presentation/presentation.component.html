@@ -40,7 +40,7 @@
 
          <div class="row">
             <div class=" col-xs-12">
-                <form id="msform" style="width: 100%; top: 20%">
+                <form id="msform" style="width: 100%; top: 20%" [formGroup]="actionUserForm">
                     <!-- progressbar -->
                     <ul id="progressbar" *ngIf="!contactForm">
                         <li class="active">Action</li>
@@ -52,53 +52,44 @@
                     <!-- fieldsets -->
                     <fieldset>
                         <h2 class="fs-title" id="details">Compare Title Quotes Free</h2>
-                        <input type="button" name="next" class="next action-button" value="Purchase" />
-                        <input type="button" name="next" class="next action-button" value="Refinance" />
+                        <input type="button" name="next" class="next action-button" (click)="setType('Purchase')" value="Purchase" />
+                        <input type="button" name="next" class="next action-button" (click)="setType('Refinance')" value="Refinance" />
                     </fieldset>
-                    <fieldset id="highForm" ngForm #secondStepForm="ngForm">
+                    <fieldset id="highForm">
                         <h2 class="fs-title" id="details">What is the property Address and Title's Regrads?</h2>
                         <h3 class="fs-subtitle d-none d-sm-block">Property you are buying, selling or refinancing:</h3>
-                        <div class="form-group" [ngClass]="{'has-error': secondStepFormClicked || purchasePrice.dirty && purchasePrice.invalid}">
-                            <input type="text"  required [(ngModel)]="formData.merge_purchaseprice"  #purchasePrice="ngModel" name="purchase_price" id="purchase_price" placeholder="Purchase Price*"/>
+                        <div class="form-group" [ngClass]="{'has-error': isControlInvalid('price')}">
+                            <input type="text" formControlName="price" id="price" placeholder="Purchase Price*"/>
+                            <div class="error-msg" *ngIf="isControlInvalid('price')">This field is required</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error': isControlInvalid('loanAmount')}">
+                            <input type="text" formControlName="loanAmount" id="loanAmount" placeholder="Loan Amount*"/>
+                            <div class="error-msg" *ngIf="isControlInvalid('loanAmount')">This field is required</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error': isControlInvalid('zip')}">
+                            <input type="text" formControlName="zip" id="zip" placeholder="ZIP*"/>
                             <div class="error-msg">This field is required</div>
                         </div>
-                        <div class="form-group" [ngClass]="{'has-error': loanAmount.dirty && loanAmount.invalid}">
-                            <input type="text" required [(ngModel)]="formData.merge_loanamount" #loanAmount="ngModel" name="loan_amount" placeholder="Loan Amount*"/>
-                            <div class="error-msg">This field is required</div>
+                        <div class="form-group">
+                            <select formControlName="country" id="country" class="form-control custom-form">
+                                <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                            </select>
                         </div>
-                        <div class="form-group" [ngClass]="{'has-error': zip.dirty && zip.invalid}">
-                            <input type="text" required [(ngModel)]="formData.merge_zip" #zip="ngModel" name="zip" placeholder="ZIP*"/>
-                            <div class="error-msg">This field is required</div>
-                        </div>
-                        <div class="form-group" [ngClass]="{'has-error': country.dirty && country.invalid}">
-                            <select required [(ngModel)]="formData.merge_country" #country="ngModel" name="country" class="form-control custom-form">
-                                <option value="null">County*</option>
-                                <option value="Richland">Richland</option>
-                                <option value="Greenville">Greenville</option>
-                                <option value="Charleston">Charleston</option>
+                        <div class="form-group">
+                            <select formControlName="state" id="state" class="form-control custom-form">
+                                <option *ngFor="let state of states" [value]="state">{{state}}</option>
                             </select>
                             <div class="error-msg">This field is required</div>
                         </div>
-                        <div class="form-group" [ngClass]="{'has-error': state.dirty && state.invalid}">
-                            <select required [(ngModel)]="formData.merge_state" #state="ngModel" name="state" class="form-control custom-form">
-                                <option value="null">State*</option>
-                                <option value="South_Carolina">South Carolina</option>
-                                <option value="District_of_Columbia">District of Columbia</option>
-                            </select>
-                            <div class="error-msg">This field is required</div>
-                        </div>
-                        <div class="form-group" [ngClass]="{'has-error': city.dirty && city.invalid}">
-                            <select required [(ngModel)]="formData.merge_city" #city="ngModel" name="city" class="form-control custom-form">
-                                <option value="null">City*</option>
-                                <option value="Columbia">Columbia</option>
-                                <option value="Greenville">Greenville</option>
-                                <option value="Washington">Washington</option>
+                        <div class="form-group">
+                            <select formControlName="city" id="city" name="city" class="form-control custom-form">
+                                <option *ngFor="let city of cities" [value]="city">{{city}}</option>
                             </select>
                             <div class="error-msg">This field is required</div>
                         </div>
 
                         <input type="button" name="previous" class="previous action-button-previous" value="Back"/>
-                        <input type="button" name="next" class="next action-button" [disabled]="secondStepForm.invalid" value="Next"/>
+                        <input type="button" name="next" class="next action-button" (click)="calculateTotals()" [disabled]="isControlInvalid('price') || isControlInvalid('loanAmount') || isControlInvalid('zip')" value="Next"/>
                     </fieldset>
                     <!--
                     <fieldset>
@@ -151,7 +142,7 @@
                                             <star-rating-comp [starType]="'svg'" [readOnly]="true" [rating]="company.rating"></star-rating-comp>
                                             <a href="#">Website</a>
                                         </td>
-                                        <td class="align-middle">$1550</td>
+                                        <td class="align-middle">{{company.total_price | currency:'USD':'symbol'}}</td>
                                         <td class="align-middle">
                                             <div class="form-check">
                                                 <label class="form-check-label">
@@ -171,26 +162,26 @@
                         <input type="button" name="next" class="next action-button" value="Get Contacts"/>
                         -->
                     </fieldset>
-                    <div id="contactForm" *ngIf="contactForm" [@contact] ngForm #thirdStepForm="ngForm">
+                    <div id="contactForm" *ngIf="contactForm" [@contact]>
                         <h2 class="fs-title">Contact Information</h2>
                         <h3 class="fs-subtitle">Tell us more about you</h3>
-                        <div class="form-group" [ngClass]="{'has-error': fname.dirty && fname.invalid}">
-                            <input required [(ngModel)]="formData.merge_fname" #fname="ngModel"  type="text" name="fname" placeholder="First Name*"/>
+                        <div class="form-group" [ngClass]="{'has-error': isControlInvalid('firstName')}">
+                            <input formControlName="firstName" id="firstName" type="text" placeholder="First Name*"/>
                             <div class="error-msg">This field is required</div>
                         </div>
-                        <div class="form-group" [ngClass]="{'has-error': lname.dirty && lname.invalid}">
-                            <input required [(ngModel)]="formData.merge_lname" #lname="ngModel"  type="text" name="lname" placeholder="Last Name*"/>
+                        <div class="form-group" [ngClass]="{'has-error': isControlInvalid('lastName')}">
+                            <input formControlName="lastName" id="lastName" type="text" placeholder="Last Name*"/>
                             <div class="error-msg">This field is required</div>
                         </div>
-                        <div class="form-group" [ngClass]="{'has-error': useremail.dirty && useremail.invalid}">
-                            <input required [(ngModel)]="formData.merge_useremail" #useremail="ngModel" type="text" name="email" placeholder="Email*"/>
+                        <div class="form-group" [ngClass]="{'has-error': isControlInvalid('email')}">
+                            <input formControlName="email" id="email" type="text" placeholder="Email*"/>
                             <div class="error-msg">This field is required</div>
                         </div>
-                        <div class="form-group" [ngClass]="{'has-error': userphone.dirty && userphone.invalid}">
-                            <input required [(ngModel)]="formData.merge_userphone" #userphone="ngModel" type="text" name="phone" placeholder="Phone*"/>
+                        <div class="form-group" [ngClass]="{'has-error': isControlInvalid('phone')}">
+                            <input formControlName="phone" id="phone" type="text" placeholder="Phone*"/>
                             <div class="error-msg">This field is required</div>
                         </div>
-                        <input type="button" name="next" class="action-button" value="Get In Touch" [disabled]="thirdStepForm.invalid" (click)="send()"/>
+                        <input type="button" name="next" class="action-button" value="Get In Touch" (click)="send()"/>
                     </div>
                 </form>
             </div>
