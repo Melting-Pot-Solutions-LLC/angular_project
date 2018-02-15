@@ -33,6 +33,11 @@ export class ActionFormService {
                 const document_recording = 180;
 
                 total = title_insurance + recording_fee + document_recording + company_fees;
+
+
+                console.log("PURCHASE IN DC");
+                console.log("title_insurance - " + title_insurance + " recording_fee - " + recording_fee + " document_recording - " + document_recording + " company_fees - " + company_fees);
+
             } else if (actionFormModel.type === 'Refinance') {
                 let title_insurance = 0;
                 const number_of_thousands = Math.ceil(actionFormModel.price / 1000);
@@ -53,12 +58,15 @@ export class ActionFormService {
                     console.log('refinance error 1');
                 }
                 const document_recording = 180;
+
+                console.log("REFINANCE IN DC");
+                console.log("title_insurance - " + title_insurance + " document_recording - " + document_recording + " company_fees - " + company_fees);
                 total = title_insurance + document_recording + company_fees;
             } else {
                 console.log('refinance error 2');
             }
         } else if (actionFormModel.state === 'VA') {
-            if (actionFormModel.type === 'purchase') {
+            if (actionFormModel.type === 'Purchase') {
                 const deed_document_recording = 43;
                 const loan_document_recording = (actionFormModel.loanAmount > 0) ? 56 : 0;
                 const city_transfer_tax = actionFormModel.price * 0.000834;
@@ -86,12 +94,16 @@ export class ActionFormService {
                 const document_recording = 150;
 
                 const grantor_tax = actionFormModel.price * 0.001;
-                const congestion_tax = actionFormModel.price * 0.00115;
-
+                const congestion_tax = actionFormModel.price * 0.0015;
+                console.log("PURCHASE IN VA");
                 total = title_insurance + document_recording + company_fees + grantor_tax + congestion_tax +
                     deed_document_recording + loan_document_recording + city_transfer_tax + mortgage_tax +
                     state_transfer_tax + state_mortgage_tax;
-            } else if (actionFormModel.type === 'refinance') {
+
+                    console.log("title_insurance - " + title_insurance + " document_recording - " + document_recording + " company_fees - " + company_fees);
+
+
+            } else if (actionFormModel.type === 'Refinance') {
 
                 // const deed_document_recording = 43
                 const loan_document_recording = (actionFormModel.loanAmount > 0) ? 56 : 0;
@@ -117,7 +129,8 @@ export class ActionFormService {
                 }
 
                 // document_recording = 180
-                total = title_insurance + actionFormModel.price + loan_document_recording + mortgage_tax + state_mortgage_tax;
+                total = title_insurance + loan_document_recording + mortgage_tax + state_mortgage_tax + company_fees;
+                console.log("title_insurance - " + title_insurance + " loan_document_recording - " + loan_document_recording);
 
             } else {
                 console.log('error VA')
