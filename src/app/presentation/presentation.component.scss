@@ -72,6 +72,22 @@ body {
 
     /*stacking fieldsets above each other*/
     position: relative;
+
+    max-height: 63vh;
+    overflow: auto;
+    position: relative;
+    &::-webkit-scrollbar
+    {
+        width: 6px;
+        -webkit-appearance: none;
+    }
+    &::-webkit-scrollbar-thumb
+    {
+        cursor: pointer !important;
+
+        border-radius: 10px;
+        background: #2a5797;
+    }
 }
 
 #contactForm {
