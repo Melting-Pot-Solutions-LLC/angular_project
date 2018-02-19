@@ -37,6 +37,7 @@
     "ng2-img-cropper": "^0.9.0",
     "ng2-nouislider": "1.6.1",
     "nouislider": "9.2.0",
+    "os-tmpdir": "^1.0.2",
     "popper.js": "^1.13.0",
     "request": "^2.83.0",
     "rxjs": "^5.5.6",

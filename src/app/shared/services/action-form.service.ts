@@ -31,7 +31,7 @@ export class ActionFormService {
 
                 if(title_insurance < 228) title_insurance = 228;
 
-                const recording_fee = (actionFormModel.price < 400000) ? actionFormModel.price * 0.011 : actionFormModel.price * 0.014;
+                const recording_fee = (actionFormModel.price < 400000) ? actionFormModel.price * 0.011 : actionFormModel.price * 0.0145;
                 const document_recording = 180;
 
                 total = title_insurance + recording_fee + document_recording + company_fees + ((actionFormModel.loanAmount > 0)? 150: 0);
@@ -114,9 +114,9 @@ export class ActionFormService {
                 // const deed_document_recording = 43
                 const loan_document_recording = (actionFormModel.loanAmount > 0) ? 56 : 0;
                 // const city_transfer_tax = actionFormModel.price*0.000834
-                const mortgage_tax = actionFormModel.loanAmount * 0.000834;
+                const mortgage_tax = actionFormModel.loanAmount * 0.0006;
                 // const state_transfer_tax = actionFormModel.price*0.0025
-                const state_mortgage_tax = actionFormModel.loanAmount * 0.0025;
+                const state_mortgage_tax = actionFormModel.loanAmount * 0.0018;
                 let title_insurance = 0;
 
                 const number_of_thousands = Math.ceil(actionFormModel.loanAmount / 1000);
