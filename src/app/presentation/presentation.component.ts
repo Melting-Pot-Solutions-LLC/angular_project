@@ -180,7 +180,7 @@ export class PresentationComponent implements OnInit {
         const clientEmail = {
             apikey: '9440927c-04d7-4f01-8cdc-698cfc2be1da',
             template: '12010',
-            to: this.actionUserForm.get['email'].value
+            to: this.actionUserForm.get('email').value
         };
 
         const clientFormData = new FormData();
