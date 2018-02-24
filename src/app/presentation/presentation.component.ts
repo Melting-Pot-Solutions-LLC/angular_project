@@ -197,13 +197,23 @@ export class PresentationComponent implements OnInit {
             template: '12015',
             to: this.selectedCompanyEmail
         };
-        companyEmail = Object.assign(companyEmail, this.formData);
-        console.log(companyEmail);
-            const companyFormData = new FormData();
+        let adminEmailData = {};
+        adminEmailData['merge_purchaseprice'] = this.actionUserForm.get('price').value;
+        adminEmailData['merge_loanamount'] = this.actionUserForm.get('loanAmount').value;
+        adminEmailData['merge_zip'] = this.actionUserForm.get('zip').value;
+        adminEmailData['merge_country'] = this.actionUserForm.get('country').value;
+        adminEmailData['merge_state'] = this.actionUserForm.get('state').value;
+        adminEmailData['merge_city'] = this.actionUserForm.get('city').value;
+        adminEmailData['merge_fname'] = this.actionUserForm.get('firstName').value;
+        adminEmailData['merge_lname'] = this.actionUserForm.get('lastName').value;
+        adminEmailData['merge_useremail'] = this.actionUserForm.get('email').value;
+        adminEmailData['merge_userphone'] = this.actionUserForm.get('phone').value;
+
+        const companyFormData = new FormData();
+        companyEmail = Object.assign(companyEmail, adminEmailData);
         Object.keys(companyEmail).forEach(key => {
             companyFormData.append(key, companyEmail[key]);
         });
-
         return this.http.post('https://api.elasticemail.com/v2/email/send', companyFormData).toPromise()
     }
 
