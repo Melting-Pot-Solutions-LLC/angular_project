@@ -1,7 +1,21 @@
 .logo
 {
     position: relative;
-    height: 100%;
-    width: 30%;
-    left: 4%;
+    height: 190px;
+    width: 240px;
+}
+.navbar.navbar-transparent {
+    padding-top: 0;
+}
+
+.navbar-transparent .navbar-nav .nav-item .nav-link:not(.btn) {
+    color: #2e5da1;
+    font-family: ubuntu-medium;
+    letter-spacing: 0.2em;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  color: #2e5da1;
+  font-family: ubuntu-medium;
+  letter-spacing: 0.2em;
 }

@@ -10,3 +10,17 @@
 }
 
 @import "~angular-star-rating/assets/scss/star-rating";
+
+@font-face {
+  font-family: 'ubuntu-medium';
+  src: url('assets/fonts/ubuntu-medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ubuntu-light';
+  src: url('assets/fonts/ubuntu-light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
