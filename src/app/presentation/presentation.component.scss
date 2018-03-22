@@ -334,3 +334,12 @@ input[disabled]{
     top: 100px;
     width: 100%;
 }
+
+@media (max-width: 500px) {
+    .form-check-label {
+        padding-left: 10px;
+    }
+    .table td, .table th {
+        padding: 0;
+    }
+}

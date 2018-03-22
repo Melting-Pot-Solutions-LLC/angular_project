@@ -1,5 +1,5 @@
 
-<div class="page-header"  style="background-image: url('assets/img/pexels-photo-323772.jpg'); ">
+<div class="page-header"  style="background-image: url('assets/img/pexels-photo-323772.jpg'); overflow-y: scroll;">
     <!-- MultiStep Form -->
 
          <div class="row" style="height: 100vh">
@@ -95,32 +95,36 @@
                         <div class="result-form">
                             <div class="container">
                                 <div class="row">
-                                    <table class="table">
-                                        <tbody>
-                                        <!-- content block -->
-                                        <tr *ngFor="let company of accounts; let i = index">
-                                            <th class="align-middle">
-                                                <div class="card-avatar d-none d-md-block">
-                                                    <a href="#avatar" *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
-                                                </div>
-                                            </th>
-                                            <td>{{company.title}}<br>
-                                                <star-rating-comp [starType]="'svg'" [readOnly]="true" [rating]="company.rating"></star-rating-comp>
-                                                <a href="#">Website</a>
-                                            </td>
-                                            <td class="align-middle">{{company.total_price | currency:'USD':'symbol'}}</td>
-                                            <td class="align-middle">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="selectCompany(company.email)"/>
-                                                        <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="selectCompany(company.email)"></i>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <div class="col">
+                                        <table class="table">
+                                            <tbody>
+                                            <!-- content block -->
+                                            <tr *ngFor="let company of accounts; let i = index">
+                                                <th class="align-middle hidden-xs">
+                                                    <div class="card-avatar d-none d-md-block">
+                                                        <a href="#avatar" *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
+                                                    </div>
+                                                </th>
+                                                <td>{{company.title}}<br>
+                                                    <star-rating-comp [starType]="'svg'" [readOnly]="true" [rating]="company.rating"></star-rating-comp>
+                                                    <a href="#">Website</a>
+                                                </td>
+                                                <td class="align-middle">{{company.total_price | currency:'USD':'symbol'}}</td>
+                                                <td class="align-middle">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
 
-                                    </tbody>
-                                </table>
+                                                            <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="selectCompany(company.email)"/>
+                                                            <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="selectCompany(company.email)"></i>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    </div>
                             </div>
                         </div>
                     </div>

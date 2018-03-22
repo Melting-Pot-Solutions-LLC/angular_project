@@ -2,7 +2,7 @@
     <div class="container">
         <div class="navbar-translate">
                 <div class="row" style="text-align: center">
-                        <img src="assets/img/Quoteli_logo_RGB.png" class="logo" alt="">
+                        <img [routerLink]="['/landing']" src="assets/img/Quoteli_logo_RGB.png" class="logo" alt="">
                         
                    </div>
             <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" *ngIf="!isDocumentation() && !authService.isAuthenticated()">
-                    <a [routerLink]="['/login']" class="nav-link" target="_blank"><img src="assets/img/icon_login.png"> Log in</a>
+                    <a [routerLink]="['/login']" class="nav-link"><img src="assets/img/icon_login.png"> Log in</a>
                 </li>
 
                 <!-- <li class="nav-item" *ngIf="isHome()">
