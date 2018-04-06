@@ -359,7 +359,8 @@ input[disabled]{
 @media (min-width: 1700px) {
     .page-header {
         background-image: url('../../assets/img/diverse_couple.jpg');
-        background-position-y: -25vh;
-        background-size: contain;
+        background-position-y: -27vh;
+        background-repeat: no-repeat;
+
     }
  }
