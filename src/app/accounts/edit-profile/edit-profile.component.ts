@@ -55,7 +55,7 @@ export class EditProfileComponent implements OnInit {
         if (this.data && this.data.image) {
             const fixedImg = this.data.image.split(/,(.+)/)[1];
             if (this.data && fixedImg) {
-                console.log('uploadddddd');
+                // console.log('uploadddddd');
                 this.uploadService.uploadAccountImage(this.account, fixedImg);
             }
         }

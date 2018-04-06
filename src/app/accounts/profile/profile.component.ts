@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
             this.account = account;
             this.defaultAccount = this.accountService.getDefaultAccount();
             if (this.account.image) {
-                console.log(this.account.image);
+                // console.log(this.account.image);
                 this.uploadService.getAccountImage(account).subscribe(image => {
                     this.data = image;
                 });

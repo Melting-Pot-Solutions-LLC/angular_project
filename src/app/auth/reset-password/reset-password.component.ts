@@ -24,7 +24,7 @@ export class ResetPasswordComponent implements OnInit {
     onResetPassword() {
         this.authService.resetPassword(this.email)
             .subscribe(result => {
-                console.log('reset password');
+                // console.log('reset password');
                 this.alert.create('success', 'Please check your mailbox.', {
                     overlay: true,
                     overlayClickToClose: true,

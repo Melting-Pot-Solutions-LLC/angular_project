@@ -19,7 +19,7 @@ $(".next").click(function(){
 	//hide the current fieldset with style
 	current_fs.animate({opacity: 0}, {
 		step: function(now, mx) {
-			console.log("now = " + now);
+			// console.log("now = " + now);
 			//as the opacity of current_fs reduces to 0 - stored in "now"
 			//1. scale current_fs down to 80%
 			scale = 1 - (1 - now) * 0.2;

@@ -32,8 +32,8 @@ exports.onUserCreated = functions.auth.user().onCreate(event => {
 exports.onUserRequest = functions.database.ref('/userRequests/{requestId}').onCreate(event => {
     return new Promise((resolve, reject) => {
         let requestData = event.data.val();
-        console.log(requestData.userEmail);
-        console.log(requestData.companyEmail);
+        // console.log(requestData.userEmail);
+        // console.log(requestData.companyEmail);
 
         // For client
 
@@ -48,13 +48,13 @@ exports.onUserRequest = functions.database.ref('/userRequests/{requestId}').onCr
                 }
             },
             function (error, response, body) {
-                console.log('fires');
-                console.log('response');
-                console.log(response);
-                console.log('error');
-                console.log(error);
+                // console.log(response);
+                // console.log('error');
+                // console.log('response');
+                // console.log(error);
+                // console.log('fires');
                 if (!error && response.statusCode == 200) {
-                    console.log(body)
+                    // console.log(body)
                     resolve();
                 }
                 reject();

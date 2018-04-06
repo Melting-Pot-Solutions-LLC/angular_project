@@ -42,7 +42,7 @@ body {
 /*form styles*/
 #msform {
     text-align: center;
-    margin-top: 20vh;
+    margin-top: 25vh;
     width: 90%;
     top: 26%;
     padding-left: 10%;
@@ -187,6 +187,11 @@ body {
     padding-top: 38px;
     padding-bottom: 60px;
     height: 30%;
+}
+.fs-output {
+    padding: 10px;
+    font-size: 18px;
+    text-transform: none;
 }
 
 .fs-subtitle {
@@ -343,3 +348,18 @@ input[disabled]{
         padding: 0;
     }
 }
+ @media (min-width: 575.98px) and (max-width: 1699.98px) {
+    .page-header {
+    background-image: url('../../assets/img/diverse_couple.jpg');
+    background-position-y: -25vh;
+    background-repeat: no-repeat;
+    background-size: auto 125vh;
+    }
+}
+@media (min-width: 1700px) {
+    .page-header {
+        background-image: url('../../assets/img/diverse_couple.jpg');
+        background-position-y: -25vh;
+        background-size: contain;
+    }
+ }

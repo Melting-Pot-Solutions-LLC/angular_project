@@ -1,5 +1,5 @@
 
-<div class="page-header"  style="background-image: url('assets/img/diverse_couple.jpg'); background-position-y: 100%;">
+<div class="page-header">
     <!-- MultiStep Form -->
 
          <div class="row" style="height: 100vh">
@@ -9,8 +9,8 @@
                     <fieldset>
                         <div class="progressbar-div" *ngIf="!contactForm">
                             <ul id="progressbar">
-                                <li class="active">Action</li>
-                                <li class="non-active">Address & Purchases</li>
+                                <li class="active">Property info</li>
+                                <li class="non-active">Sales and loan amount</li>
                                 <li class="non-active">Your offers</li>
                             </ul>
                         </div>
@@ -23,8 +23,8 @@
                     <fieldset id="highForm">
                         <div class="progressbar-div" *ngIf="!contactForm">
                             <ul id="progressbar">
-                                <li class="activated">Action</li>
-                                <li class="active">Address & Purchases</li>
+                                <li class="activated">Property info</li>
+                                <li class="active">Sales and loan amount</li>
                                 <li class="non-active">Your offers</li>
                             </ul>
                         </div>
@@ -86,8 +86,8 @@
                     <fieldset *ngIf="!contactForm">
                         <div class="progressbar-div" *ngIf="!contactForm">
                             <ul id="progressbar">
-                                <li class="activated">Action</li>
-                                <li class="activated">Address & Purchases</li>
+                                <li class="activated">Property info</li>
+                                <li class="activated">Sales and loan amount</li>
                                 <li class="active">Your offers</li>
                             </ul>
                         </div>
@@ -114,8 +114,8 @@
                                                     <div class="form-check">
                                                         <label class="form-check-label">
 
-                                                            <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="selectCompany(company.email)"/>
-                                                            <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="selectCompany(company.email)"></i>
+                                                            <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="selectCompany(company.email, company.title, company.address, company.website, company.phone)"/>
+                                                            <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="selectCompany(company.email, company.title)"></i>
                                                         </label>
                                                     </div>
                                                 </td>
@@ -134,7 +134,11 @@
                         -->
                     </fieldset>
                     <div id="contactForm" *ngIf="contactForm" [@contact]>
-                        <h2 class="fs-title">Contact Information</h2>
+                        <div class="fs-title">
+                                <h2 class="fs-title" style="padding-top: 0px; padding-bottom: 0px;">Contact Information</h2>
+                                <h4 class="fs-output">We are going to send your information to: {{selectedCompanyTitle}}, {{selectedCompanyPhone}}, {{selectedCompanyAddress}}, {{selectedCompanyWebsite}}</h4>
+                        </div>
+                        
                         <h3 class="fs-subtitle">Tell us more about you</h3>
                         <div class="form-group" [ngClass]="{'has-error': isControlInvalid('firstName')}">
                             <input formControlName="firstName" id="firstName" type="text" placeholder="First Name*"/>

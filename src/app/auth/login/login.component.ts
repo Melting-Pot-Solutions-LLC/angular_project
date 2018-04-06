@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     onLogin() {
         this.authService.login(this.email, this.password)
             .subscribe(user => {
-                    console.log(user);
+                    // console.log(user);
                     if (user.emailVerified) {
                         this.router.navigate(['/user-profile']);
                         this.accountService.getAccountById(user.uid).subscribe(account => {
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
             .subscribe(user => {
                     this.authService.sendEmailVerification();
                     this.authService.logout();
-                    console.log('verify');
+                    // console.log('verify');
                     this.alert.create('success', 'Please check your mailbox.', {
                         overlay: true,
                         overlayClickToClose: true,

@@ -26,7 +26,7 @@ export class ActionFormService {
                 } else if (number_of_thousands >= 15000) {
                     title_insurance = 250 * 5.7 + 250 * 5.1 + 500 * 4.5 + 4000 * 3.9 + 10000 * 1.05 + (number_of_thousands - 15000) * 0.9;
                 } else {
-                    console.log('purchase error');
+                    // console.log('purchase error');
                 }
 
                 if(title_insurance < 228) title_insurance = 228;
@@ -37,8 +37,8 @@ export class ActionFormService {
                 total = title_insurance + recording_fee + document_recording + company_fees + ((actionFormModel.loanAmount > 0)? 150: 0);
 
 
-                console.log("PURCHASE IN DC");
-                console.log("title_insurance - " + title_insurance + " recording_fee - " + recording_fee + " document_recording - " + document_recording + " company_fees - " + company_fees + ((actionFormModel.loanAmount > 0)? " +$150 since there is a loan": ""));
+                // console.log("PURCHASE IN DC");
+                // console.log("title_insurance - " + title_insurance + " recording_fee - " + recording_fee + " document_recording - " + document_recording + " company_fees - " + company_fees + ((actionFormModel.loanAmount > 0)? " +$150 since there is a loan": ""));
 
             } else if (actionFormModel.type === 'Refinance') {
                 let title_insurance = 0;
@@ -57,7 +57,7 @@ export class ActionFormService {
                     title_insurance = 250 * 2.7 + 250 * 2.34 + 500 * 1.98 + 4000 * 1.62 + 10000 * 0.75 +
                         (number_of_thousands - 15000) * 0.6;
                 } else {
-                    console.log('refinance error 1');
+                    // console.log('refinance error 1');
                 }
 
                 if(title_insurance < 101) title_insurance = 101;
@@ -65,11 +65,11 @@ export class ActionFormService {
 
                 const document_recording = 180;
 
-                console.log("REFINANCE IN DC");
-                console.log("title_insurance - " + title_insurance + " document_recording - " + document_recording + " company_fees - " + company_fees);
+                // console.log("REFINANCE IN DC");
+                // console.log("title_insurance - " + title_insurance + " document_recording - " + document_recording + " company_fees - " + company_fees);
                 total = title_insurance + document_recording + company_fees;
             } else {
-                console.log('refinance error 2');
+                // console.log('refinance error 2');
             }
         } else if (actionFormModel.state === 'VA') {
             if (actionFormModel.type === 'Purchase') {
@@ -94,19 +94,19 @@ export class ActionFormService {
                 } else if (number_of_thousands >= 5000) {
                     title_insurance = 250 * 3.9 + 250 * 3.7 + 500 * 3.4 + 4000 * 2.25 + (number_of_thousands - 5000) * 2.1
                 } else {
-                    console.log('purchase error VA');
+                    // console.log('purchase error VA');
                 }
 
                 const document_recording = 150;
 
                 // const grantor_tax = actionFormModel.price * 0.001;
                 // const congestion_tax = actionFormModel.price * 0.0015;
-                console.log("PURCHASE IN VA");
+                // console.log("PURCHASE IN VA");
                 total = title_insurance + document_recording + company_fees +
                     deed_document_recording + loan_document_recording + city_transfer_tax + mortgage_tax +
                     state_transfer_tax + state_mortgage_tax;
 
-                    console.log("title_insurance - " + title_insurance + " document_recording - " + document_recording + " company_fees - " + company_fees + " city_transfer_tax -" + city_transfer_tax + " mortgage_tax - " + mortgage_tax + " state_transfer_tax - "  + state_transfer_tax + " state_mortgage_tax - " + state_mortgage_tax);
+                    // console.log("title_insurance - " + title_insurance + " document_recording - " + document_recording + " company_fees - " + company_fees + " city_transfer_tax -" + city_transfer_tax + " mortgage_tax - " + mortgage_tax + " state_transfer_tax - "  + state_transfer_tax + " state_mortgage_tax - " + state_mortgage_tax);
 
 
             } else if (actionFormModel.type === 'Refinance') {
@@ -131,17 +131,17 @@ export class ActionFormService {
                 } else if (number_of_thousands >= 5000) {
                     title_insurance = 250 * 2.9 + 250 * 2.7 + 500 * 2.4 + 4000 * 1.25 + (number_of_thousands - 5000) * 1.1;
                 } else {
-                    console.log('refinance error VA 1')
+                    // console.log('refinance error VA 1')
                 }
 
                 title_insurance *= 0.7;
 
                 // document_recording = 180
                 total = title_insurance + loan_document_recording + mortgage_tax + state_mortgage_tax + company_fees;
-                console.log("title_insurance - " + title_insurance + " loan_document_recording - " + loan_document_recording);
+                // console.log("title_insurance - " + title_insurance + " loan_document_recording - " + loan_document_recording);
 
             } else {
-                console.log('error VA')
+                // console.log('error VA')
             }
         } else {
             alert('invalid state');

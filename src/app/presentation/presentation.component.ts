@@ -45,6 +45,11 @@ export class PresentationComponent implements OnInit {
     selectedCompanyEmail: string;
     actionFormModel: ActionFormModel;
     actionUserForm: FormGroup;
+    // Changed by emiev@outlook.com
+    selectedCompanyTitle: string;
+    selectedCompanyWebsite: string;
+    selectedCompanyPhone: string;
+    selectedCompanyAddress: string;
 
     countries = ['County*', 'Richland', 'Greenville', 'Charleston'];
     states = ['State*', 'DC', 'VA'];
@@ -72,7 +77,7 @@ export class PresentationComponent implements OnInit {
         this.initSecondStepForm();
 
         this.accountService.getAccounts().subscribe(accounts => {
-            console.log(accounts);
+            // console.log(accounts);
             this.accounts = accounts;
             this.isDataAvailable = true;
             this.images = [];
@@ -151,20 +156,24 @@ export class PresentationComponent implements OnInit {
     }
 
     setType(type: string) {
-        console.log('im here ' + type);
+        // console.log('im here ' + type);
         this.actionUserForm.patchValue({type: type});
     }
 
     calculateTotals() {
-        console.log(this.actionUserForm.value);
+        // console.log(this.actionUserForm.value);
         for (const company of this.accounts) {
             company.total_price = this.actionFormService.getTotal(<ActionFormModel>this.actionUserForm.value, company.fees);
-            console.log(company.total_price);
+            // console.log(company.total_price);
         }
     }
 
-    selectCompany(companyEmail: string) {
+    selectCompany(companyEmail: string, companyTitle: string, companyWebsite: string, companyPhone: string, companyAddress: string) {
         this.selectedCompanyEmail = companyEmail;
+        this.selectedCompanyTitle = companyTitle;
+        this.selectedCompanyWebsite = companyWebsite;
+        this.selectedCompanyPhone = companyPhone;
+        this.selectedCompanyAddress = companyAddress;
         this.open();
     }
 
@@ -223,7 +232,7 @@ export class PresentationComponent implements OnInit {
                 return this.sendEmailToAdmin();
             })
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 this._alert.create('success', 'Your information will be received by the title companies you selected', {
                     overlay: true,
                     overlayClickToClose: true,
