@@ -130,8 +130,8 @@
                                                             Title Company Fees: ${{company.totalInfo?.companyFee}}<br>
                                                             Government Fees : ${{company.totalInfo?.government_fee}}<br></ng-template>
                                                         <label class="form-check-label">
-                                                            <input type="button" class="btn btn-outline-secondary d-none d-sm-block multi_lines_text" placement="bottom"
-                                                                    [ngbPopover]="popContent"
+                                                            <input type="button" class="btn btn-outline-secondary d-none d-sm-block multi_lines_text" placement="left"
+                                                                    [ngbPopover]="popContent"  triggers="mouseenter:mouseleave"
                                                                    popoverTitle="Price details" value="See details"/>
                                                         </label>
                                                     </div>
