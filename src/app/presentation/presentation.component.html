@@ -41,12 +41,21 @@
                             </div>
                             <div class="form-group">
                                 <select formControlName="state" id="state" class="form-control custom-form">
-                                    <option *ngFor="let state of states" [value]="state">{{state}}</option>
+                                    <option disabled [value]="states[0]">{{states[0]}}</option>
+                                    <option [value]="states[1]">{{states[1]}}</option>
+                                    <option [value]="states[2]">{{states[2]}}</option>
                                 </select>
                                 <div class="error-msg">This field is required</div>
                             </div>
                             <input type="button" name="previous" class="previous action-button-previous" value="Back"/>
-                            <input type="button" name="next" class="next action-button" (click)="calculateTotals()" [disabled]="isControlInvalid('price') || isControlInvalid('loanAmount') || isControlInvalid('zip')" value="Next"/>
+                            <input
+                                    type="button"
+                                    name="next"
+                                    class="next action-button"
+                                    (click)="calculateTotals()"
+                                    [disabled]="isControlInvalid('price') || isControlInvalid('loanAmount') ||
+                                    isControlInvalid('zip') || actionUserForm.get('price').hasError('required') ||
+                                    actionUserForm.get('loanAmount').hasError('required') || isInvalidState()" value="Next"/>
                         </div>
                     </fieldset>
                     <!--

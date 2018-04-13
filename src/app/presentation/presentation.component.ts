@@ -269,5 +269,7 @@ export class PresentationComponent implements OnInit {
         //         setTimeout(() => this.router.navigate(['/landing']), 1200);
         //     });
     }
+    isInvalidState():boolean{
+        return this.actionUserForm.controls['state'].value===this.states[0];
+    }
 }
-
