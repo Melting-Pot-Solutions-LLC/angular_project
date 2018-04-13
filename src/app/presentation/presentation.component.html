@@ -113,11 +113,20 @@
                                                 <td class="align-middle">
                                                     <div class="form-check">
                                                         <label class="form-check-label">
-
                                                             <input type="button" name="next" class="action-button d-none d-sm-block" value="Contact" (click)="selectCompany(company.email, company.title, company.address, company.website, company.phone)"/>
-                                                            <i class="fa fa-phone fa-3x fa-color d-block d-sm-none" (click)="selectCompany(company.email, company.title)"></i>
+                                                            <i class="fa fa-phone fa-3x  fa-color d-block d-sm-none" (click)="selectCompany(company.email, company.title)"></i>
+                                                        </label>
+                                                        <ng-template #popContent>
+                                                            Title Insurance: ${{company.totalInfo?.title_insurance}} <br>
+                                                            Title Company Fees: ${{company.totalInfo?.companyFee}}<br>
+                                                            Government Fees : ${{company.totalInfo?.government_fee}}<br></ng-template>
+                                                        <label class="form-check-label">
+                                                            <input type="button" class="btn btn-outline-secondary d-none d-sm-block multi_lines_text" placement="bottom"
+                                                                    [ngbPopover]="popContent"
+                                                                   popoverTitle="Price details" value="See details"/>
                                                         </label>
                                                     </div>
+
                                                 </td>
                                             </tr>
 

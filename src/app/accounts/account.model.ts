@@ -1,3 +1,5 @@
+import {TotalInfoModel} from '../shared/models/total.Info.model';
+
 export class Account {
     id: string;
     title: string;
@@ -15,4 +17,5 @@ export class Account {
     rating: number;
     data: any;
     total_price: number;
+    totalInfo: TotalInfoModel;
 }

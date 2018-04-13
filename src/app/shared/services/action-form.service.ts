@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActionFormModel} from '../models/action-form.model';
+import {TotalInfoModel} from '../models/total.Info.model';
 
 @Injectable()
 export class ActionFormService {
@@ -7,8 +8,9 @@ export class ActionFormService {
     constructor() {
     }
 
-    getTotal(actionFormModel: ActionFormModel, company_fees: number): number {
+    getTotal(actionFormModel: ActionFormModel, company_fees: number): TotalInfoModel {
         let total = 0;
+        const totalObject: TotalInfoModel = new TotalInfoModel();
         if (actionFormModel.state === 'DC') {
             if (actionFormModel.type === 'Purchase') {
                 let title_insurance = 0;
@@ -29,13 +31,18 @@ export class ActionFormService {
                     // console.log('purchase error');
                 }
 
-                if(title_insurance < 228) title_insurance = 228;
+                if (title_insurance < 228) {
+                    title_insurance = 228;
+                }
 
                 const recording_fee = (actionFormModel.price < 400000) ? actionFormModel.price * 0.011 : actionFormModel.price * 0.0145;
                 const document_recording = 180;
 
                 total = title_insurance + recording_fee + document_recording + company_fees + ((actionFormModel.loanAmount > 0)? 150: 0);
-
+                totalObject.total = total;
+                totalObject.companyFee = company_fees;
+                totalObject.title_insurance = title_insurance;
+                totalObject.government_fee = total - title_insurance - company_fees;
 
                 // console.log("PURCHASE IN DC");
                 // console.log("title_insurance - " + title_insurance + " recording_fee - " + recording_fee + " document_recording - " + document_recording + " company_fees - " + company_fees + ((actionFormModel.loanAmount > 0)? " +$150 since there is a loan": ""));
@@ -60,7 +67,9 @@ export class ActionFormService {
                     // console.log('refinance error 1');
                 }
 
-                if(title_insurance < 101) title_insurance = 101;
+                if (title_insurance < 101) {
+                    title_insurance = 101;
+                }
                 title_insurance *= 0.7;
 
                 const document_recording = 180;
@@ -68,6 +77,10 @@ export class ActionFormService {
                 // console.log("REFINANCE IN DC");
                 // console.log("title_insurance - " + title_insurance + " document_recording - " + document_recording + " company_fees - " + company_fees);
                 total = title_insurance + document_recording + company_fees;
+                totalObject.total = total;
+                totalObject.companyFee = company_fees;
+                totalObject.title_insurance = title_insurance;
+                totalObject.government_fee = total - title_insurance - company_fees;
             } else {
                 // console.log('refinance error 2');
             }
@@ -105,6 +118,10 @@ export class ActionFormService {
                 total = title_insurance + document_recording + company_fees +
                     deed_document_recording + loan_document_recording + city_transfer_tax + mortgage_tax +
                     state_transfer_tax + state_mortgage_tax;
+                totalObject.total = total;
+                totalObject.companyFee = company_fees;
+                totalObject.title_insurance = title_insurance;
+                totalObject.government_fee = total - title_insurance - company_fees;
 
                     // console.log("title_insurance - " + title_insurance + " document_recording - " + document_recording + " company_fees - " + company_fees + " city_transfer_tax -" + city_transfer_tax + " mortgage_tax - " + mortgage_tax + " state_transfer_tax - "  + state_transfer_tax + " state_mortgage_tax - " + state_mortgage_tax);
 
@@ -138,6 +155,10 @@ export class ActionFormService {
 
                 // document_recording = 180
                 total = title_insurance + loan_document_recording + mortgage_tax + state_mortgage_tax + company_fees;
+                totalObject.total = total;
+                totalObject.companyFee = company_fees;
+                totalObject.title_insurance = title_insurance;
+                totalObject.government_fee = total - title_insurance - company_fees;
                 // console.log("title_insurance - " + title_insurance + " loan_document_recording - " + loan_document_recording);
 
             } else {
@@ -146,6 +167,6 @@ export class ActionFormService {
         } else {
             alert('invalid state');
         }
-        return total;
+        return totalObject;
     }
 }

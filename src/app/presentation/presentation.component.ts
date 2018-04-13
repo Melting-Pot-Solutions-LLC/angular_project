@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import { JasperoAlertsModule, AlertsService } from '@jaspero/ng2-alerts';
+import {JasperoAlertsModule, AlertsService} from '@jaspero/ng2-alerts';
 import {Router} from '@angular/router';
 import {
     trigger,
@@ -8,17 +8,18 @@ import {
     transition
 } from '@angular/animations';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AccountService} from '../accounts/account.service';
 import {Account} from '../accounts/account.model';
 import {UploadService} from '../accounts/upload.service';
 import {ActionFormModel} from '../shared/models/action-form.model';
 import {ActionFormService} from '../shared/services/action-form.service';
+import {TotalInfoModel} from '../shared/models/total.Info.model';
 
 
-declare var jquery:any;
-declare var $:any;
+declare var jquery: any;
+declare var $: any;
 
 
 @Component({
@@ -163,7 +164,9 @@ export class PresentationComponent implements OnInit {
     calculateTotals() {
         // console.log(this.actionUserForm.value);
         for (const company of this.accounts) {
-            company.total_price = this.actionFormService.getTotal(<ActionFormModel>this.actionUserForm.value, company.fees);
+            const totalInfo = this.actionFormService.getTotal(<ActionFormModel>this.actionUserForm.value, company.fees);
+            company.totalInfo = totalInfo;
+            company.total_price = totalInfo.total;
             // console.log(company.total_price);
         }
     }
