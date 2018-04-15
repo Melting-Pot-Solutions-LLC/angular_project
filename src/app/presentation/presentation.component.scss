@@ -186,7 +186,7 @@ white-space: pre-line;
     letter-spacing: 2px;
     font-weight: bold;
     font-family: ubuntu-medium;
-    padding-top: 38px;
+    padding-top: 18px;
     padding-bottom: 60px;
     height: 30%;
 }
@@ -341,7 +341,13 @@ input[disabled]{
     top: 100px;
     width: 100%;
 }
-
+fieldset{
+    height: auto;
+}
+.page-header {
+    background-image: url('../../assets/img/diverse_couple.jpg');
+    background-repeat: no-repeat;
+}
 @media (max-width: 500px) {
     .form-check-label {
         padding-left: 10px;
@@ -352,17 +358,12 @@ input[disabled]{
 }
  @media (min-width: 575.98px) and (max-width: 1699.98px) {
     .page-header {
-    background-image: url('../../assets/img/diverse_couple.jpg');
     background-position-y: -25vh;
-    background-repeat: no-repeat;
     background-size: auto 125vh;
     }
 }
 @media (min-width: 1700px) {
     .page-header {
-        background-image: url('../../assets/img/diverse_couple.jpg');
-        background-position-y: -27vh;
-        background-repeat: no-repeat;
-
+        background-position-y: -33vh;
     }
  }
