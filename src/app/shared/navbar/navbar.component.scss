@@ -1,8 +1,19 @@
-.logo
-{
+.logo{
     position: relative;
     height: 190px;
     width: 240px;
+}
+@media(max-width:1300px){
+  .logo{
+    position: relative;
+    height: 150px;
+    width: 190px;
+  }
+}
+@media(max-width:800px){
+  .logo{
+    display: none;
+  }
 }
 .navbar.navbar-transparent {
     padding-top: 0;
