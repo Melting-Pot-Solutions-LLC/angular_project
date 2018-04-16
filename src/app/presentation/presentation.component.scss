@@ -353,6 +353,8 @@ fieldset{
 .page-header {
     background-image: url('../../assets/img/diverse_couple.jpg');
     background-repeat: no-repeat;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 @media (max-width: 500px) {
     .form-check-label {
