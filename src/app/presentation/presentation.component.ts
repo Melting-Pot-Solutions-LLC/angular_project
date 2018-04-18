@@ -78,7 +78,7 @@ export class PresentationComponent implements OnInit {
         this.initSecondStepForm();
 
         this.accountService.getAccounts().subscribe(accounts => {
-            // console.log(accounts);
+            console.log(accounts);
             this.accounts = accounts;
             this.isDataAvailable = true;
             this.images = [];

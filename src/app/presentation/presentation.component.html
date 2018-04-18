@@ -114,9 +114,10 @@
                                                         <a href="#avatar" *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
                                                     </div>
                                                 </th>
-                                                <td class="hidden-xs hidden-sm">{{company.title}}<br>
-                                                    <star-rating-comp [starType]="'svg'" [readOnly]="true" [rating]="company.rating"></star-rating-comp>
-                                                    <a href="#">Website</a>
+                                                <td>{{company.title}}<br>
+                                                    <star-rating-comp class="hidden-xs" [starType]="'svg'" [readOnly]="true" [rating]="company.rating"></star-rating-comp>
+                                                    <a class="hidden-xs" *ngIf="company.website"  href="{{company.website}}">{{company.website}}</a>
+                                                    <a class="hidden-xs" *ngIf="!company.website" href="#">Website</a>
                                                 </td>
                                                 <td class="align-middle">{{company.total_price | currency:'USD':'symbol'}}</td>
                                                 <td class="align-middle">
@@ -129,7 +130,7 @@
                                                             Title Insurance: ${{company.totalInfo?.title_insurance}} <br>
                                                             Title Company Fees: ${{company.totalInfo?.companyFee}}<br>
                                                             Government Fees : ${{company.totalInfo?.government_fee}}<br></ng-template>
-                                                        <label class="form-check-label">
+                                                        <label class="form-check-label" class="hidden-xs hidden-sm">
                                                             <input type="button" class="btn btn-outline-secondary d-sm-block multi_lines_text" placement="left"
                                                                     [ngbPopover]="popContent"  triggers="mouseenter:mouseleave"
                                                                    popoverTitle="Price details" value="See details"/>
