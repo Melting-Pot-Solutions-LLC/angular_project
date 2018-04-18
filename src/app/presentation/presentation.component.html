@@ -109,6 +109,8 @@
                                             <tbody>
                                             <!-- content block -->
                                             <tr *ngFor="let company of accounts; let i = index">
+                                                <th class="hidden-xs align-middle">
+                                                    <div class="hidden-xs hidden-sm card-avatar d-none d-md-block">
                                                         <a href="#avatar" *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
                                                     </div>
                                                 </th>
