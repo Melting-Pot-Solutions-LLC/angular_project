@@ -169,6 +169,11 @@ export class PresentationComponent implements OnInit {
             company.total_price = totalInfo.total;
             // console.log(company.total_price);
         }
+        this.accounts.sort((leftSide, rightSide):number=>{
+            if(leftSide.total_price < rightSide.total_price) return -1;
+            if(leftSide.total_price > rightSide.total_price) return 1;
+            return 0;
+        })
     }
 
     selectCompany(companyEmail: string, companyTitle: string, companyWebsite: string, companyPhone: string, companyAddress: string) {
