@@ -119,7 +119,7 @@
                                                     <a class="hidden-xs" *ngIf="company.website"  href="{{company.website}}">{{company.website}}</a>
                                                     <a class="hidden-xs" *ngIf="!company.website" href="#">Website</a>
                                                 </td>
-                                                <td class="align-middle">{{company.total_price | currency:'USD':'symbol' || ''}}</td>
+                                                <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{company.total_price | currency:'USD':'symbol' || ''}}</td>
                                                 <td class="align-middle">
                                                     <div class="form-check">
                                                         <ng-template #popContent>
