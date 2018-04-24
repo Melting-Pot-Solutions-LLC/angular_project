@@ -152,9 +152,10 @@
                     <div id="contactForm" *ngIf="contactForm" [@contact]>
                         <div class="fs-title">
                                 <h2 class="fs-title" style="padding-top: 0px; padding-bottom: 0px;">Contact Information</h2>
-                                <h4 class="fs-output">We are going to send your information to: {{selectedCompanyTitle}}, {{selectedCompanyPhone}}, {{selectedCompanyAddress}}, {{selectedCompanyWebsite}}</h4>
                         </div>
-                        
+
+                        <h4 class="fs-output">We are going to send your information to: {{selectedCompanyTitle}}, {{selectedCompanyPhone}}, {{selectedCompanyAddress}}, {{selectedCompanyWebsite}}</h4>
+
                         <h3 class="fs-subtitle">Tell us more about you</h3>
                         <div class="form-group" [ngClass]="{'has-error': isControlInvalid('firstName')}">
                             <input formControlName="firstName" id="firstName" type="text" placeholder="First Name*"/>
@@ -172,15 +173,17 @@
                             <input formControlName="phone" id="phone" type="text" placeholder="Phone*"/>
                             <div class="error-msg">This field is required</div>
                         </div>
-                        <input type="button"
-                               name="next"
-                               class="action-button"
-                               value="Get In Touch"
-                               (click)="send()"
-                               [disabled]="actionUserForm.get('firstName').hasError('required') ||
+                        <div style="width: 30%;">
+                            <input type="button"
+                                   name="next"
+                                   class="action-button"
+                                   value="Get In Touch"
+                                   (click)="send()"
+                                   [disabled]="actionUserForm.get('firstName').hasError('required') ||
                                     actionUserForm.get('lastName').hasError('required') ||
                                     actionUserForm.get('email').hasError('required') ||
                                     actionUserForm.get('phone').hasError('required')"/>
+                        </div>
                     </div>
                 </form>
             </div>
