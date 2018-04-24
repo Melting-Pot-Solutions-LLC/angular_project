@@ -122,18 +122,15 @@
                                                 <td class="align-middle">{{company.total_price | currency:'USD':'symbol' || ''}}</td>
                                                 <td class="align-middle">
                                                     <div class="form-check">
-                                                        <label class="form-check-label">
-                                                            <input type="button" name="next" class="action-button d-sm-block" value="Contact" (click)="selectCompany(company.email, company.title, company.address, company.website, company.phone)"/>
-                                                            <i class="fa fa-phone fa-3x  fa-color d-block d-sm-none" (click)="selectCompany(company.email, company.title)"></i>
-                                                        </label>
                                                         <ng-template #popContent>
                                                             Title Insurance: ${{company.totalInfo?.title_insurance}} <br>
                                                             Title Company Fees: ${{company.totalInfo?.companyFee}}<br>
                                                             Government Fees : ${{company.totalInfo?.government_fee}}<br></ng-template>
-                                                        <label class="form-check-label" class="hidden-xs hidden-sm">
-                                                            <input type="button" class="btn btn-outline-secondary d-sm-block multi_lines_text" placement="left"
-                                                                    [ngbPopover]="popContent"  triggers="mouseenter:mouseleave"
-                                                                   popoverTitle="Price details" value="See details"/>
+                                                        <label class="form-check-label">
+                                                            <input type="button" name="next" class="action-button d-sm-block" value="Contact"
+                                                                   (click)="selectCompany(company.email, company.title, company.address, company.website, company.phone)"
+                                                                   [ngbPopover]="popContent"  triggers="mouseenter:mouseleave" popoverTitle="Price details" placement="left"/>
+                                                            <i class="fa fa-phone fa-3x  fa-color d-block d-sm-none" (click)="selectCompany(company.email, company.title)"></i>
                                                         </label>
                                                     </div>
 
