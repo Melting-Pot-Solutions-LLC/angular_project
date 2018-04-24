@@ -3,6 +3,12 @@
     height: 190px;
     width: 240px;
 }
+a{
+  cursor: pointer;
+}
+a.nonActive{
+  cursor: default;
+}
 @media(max-width:1300px){
   .logo{
     position: relative;

@@ -79,7 +79,7 @@ body {
     border-radius: 25px;
     cursor: pointer;
     padding: 10px 5px;
-    margin: 10px 5px;
+    margin: 20px 5px;
 }
 
 #msform .action-button:hover, #msform .action-button:focus {
@@ -95,7 +95,7 @@ body {
     border-radius: 25px;
     cursor: pointer;
     padding: 10px 5px;
-    margin: 10px 5px;
+    margin: 20px 5px;
 }
 
 #msform .action-button-previous:hover, #msform .action-button-previous:focus {
