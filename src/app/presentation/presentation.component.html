@@ -155,17 +155,15 @@
                             <input formControlName="phone" id="phone" type="text" placeholder="Phone*"/>
                             <div class="error-msg">This field is required</div>
                         </div>
-                        <div style="width: 30%;">
-                            <input type="button"
-                                   name="next"
-                                   class="action-button"
-                                   value="Get In Touch"
-                                   (click)="send()"
-                                   [disabled]="actionUserForm.get('firstName').hasError('required') ||
-                                    actionUserForm.get('lastName').hasError('required') ||
-                                    actionUserForm.get('email').hasError('required') ||
-                                    actionUserForm.get('phone').hasError('required')"/>
-                        </div>
+                        <input type="button"
+                               name="next"
+                               class="action-button"
+                               value="Get In Touch"
+                               (click)="send()"
+                               [disabled]="actionUserForm.get('firstName').hasError('required') ||
+                                actionUserForm.get('lastName').hasError('required') ||
+                                actionUserForm.get('email').hasError('required') ||
+                                actionUserForm.get('phone').hasError('required')"/>
                     </div>
                 </form>
             </div>
