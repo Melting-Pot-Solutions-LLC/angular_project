@@ -2,8 +2,8 @@
 <div class="page-header">
     <!-- MultiStep Form -->
 
-         <div class="row" style="height: auto">
-            <div class=" col-xs-12" style="height: 100%">
+         <div class="row">
+            <div class="col-xs-12">
                 <form id="msform" [formGroup]="actionUserForm">
                     <!-- fieldsets -->
                     <fieldset>
@@ -58,40 +58,6 @@
                                     actionUserForm.get('loanAmount').hasError('required') || isInvalidState()" value="Next"/>
                         </div>
                     </fieldset>
-                    <!--
-                    <fieldset>
-                        <h2 class="fs-title">We just need to know:</h2>
-                        <h3 class="fs-subtitle">My title needs are in regards to a:</h3>
-                        <input type="text" name="purchase_price" placeholder="Purchase Price"/>
-                        <input type="text" name="loan_amount" placeholder="Loan Amont"/>
-                        <select class="form-control custom-form">
-                            <option value="none">Search Needs</option>
-                            <option value="two">Purchase, buyer getting a loan</option>
-                            <option value="three">Purchase, buyer paying with cash</option>
-                            <option value="four">Seller quote, buyer is getting a loan</option>
-                            <option value="five">Seller quote, buyer is using cash</option>
-                            <option value="four">Refinance</option>
-                            <option value="five">Home Equity</option>
-                        </select>
-                        <select class="form-control custom-form">
-                            <option value="none">Property type</option>
-                            <option value="one">Single Family</option>
-                            <option value="two">Condo</option>
-                            <option value="three">2 Family</option>
-                            <option value="four">3 Family</option>
-                            <option value="five">4 Family</option>
-                        </select>
-                        <select class="form-control custom-form">
-                            <option value="none">Who is going to be living here?</option>
-                            <option value="two">The buyer as their primary residence</option>
-                            <option value="three">The buyer as their secondary residence</option>
-                            <option value="four">Someone else (not a buyer)</option>
-                            <option value="five">I don't know</option>
-                        </select>
-                        <input type="button" name="previous" class="previous action-button-previous" value="Back"/>
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
-                    -->
                     <fieldset *ngIf="!contactForm">
                         <div class="progressbar-div" *ngIf="!contactForm">
                             <ul id="progressbar">
