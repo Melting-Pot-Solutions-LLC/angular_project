@@ -74,7 +74,7 @@
                                         <table class="table">
                                             <tbody>
                                             <!-- content block -->
-                                            <tr *ngFor="let company of accounts; let i = index">
+                                            <tr *ngFor="let company of accounts; let i = index" (click)="selectCompany(company.email, company.title)">
                                                 <th class="hidden-xs align-middle">
                                                     <div class="hidden-xs hidden-sm card-avatar d-none d-md-block">
                                                         <a href="#avatar" *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
@@ -96,7 +96,7 @@
                                                             <input type="button" name="next" class="action-button d-sm-block" value="Contact"
                                                                    (click)="selectCompany(company.email, company.title, company.address, company.website, company.phone)"
                                                                    [ngbPopover]="popContent"  triggers="mouseenter:mouseleave" popoverTitle="Price details" placement="left"/>
-                                                            <i class="fa fa-phone fa-3x  fa-color d-block d-sm-none" (click)="selectCompany(company.email, company.title)"></i>
+                                                            <i class="fa fa-phone fa-3x  fa-color d-block d-sm-none"></i>
                                                         </label>
                                                     </div>
 
