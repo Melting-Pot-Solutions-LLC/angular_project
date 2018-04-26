@@ -51,6 +51,7 @@ export class PresentationComponent implements OnInit {
     selectedCompanyWebsite: string;
     selectedCompanyPhone: string;
     selectedCompanyAddress: string;
+    selectedCompany;
 
     countries = ['County*', 'Richland', 'Greenville', 'Charleston'];
     states = ['State*', 'DC', 'VA'];
@@ -176,12 +177,13 @@ export class PresentationComponent implements OnInit {
         })
     }
 
-    selectCompany(companyEmail: string, companyTitle: string, companyWebsite: string, companyPhone: string, companyAddress: string) {
-        this.selectedCompanyEmail = companyEmail;
-        this.selectedCompanyTitle = companyTitle;
-        this.selectedCompanyWebsite = companyWebsite;
-        this.selectedCompanyPhone = companyPhone;
-        this.selectedCompanyAddress = companyAddress;
+    selectCompany(company) {
+        this.selectedCompany = company;
+        this.selectedCompanyEmail = company.companyEmail;
+        this.selectedCompanyTitle = company.companyTitle;
+        this.selectedCompanyWebsite = company.companyWebsite;
+        this.selectedCompanyPhone = company.companyPhone;
+        this.selectedCompanyAddress = company.companyAddress;
         this.open();
     }
 

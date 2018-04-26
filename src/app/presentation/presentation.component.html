@@ -74,7 +74,8 @@
                                         <table class="table">
                                             <tbody>
                                             <!-- content block -->
-                                            <tr *ngFor="let company of accounts; let i = index" (click)="selectCompany(company.email, company.title)">
+                                            <tr *ngFor="let company of accounts; let i = index"
+                                                (click)="selectCompany(company)">
                                                 <th class="hidden-xs align-middle">
                                                     <div class="hidden-xs hidden-sm card-avatar d-none d-md-block">
                                                         <a href="#avatar" *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
@@ -94,7 +95,6 @@
                                                             Government Fees : ${{company.totalInfo?.government_fee}}<br></ng-template>
                                                         <label class="form-check-label">
                                                             <input type="button" name="next" class="action-button d-sm-block" value="Contact"
-                                                                   (click)="selectCompany(company.email, company.title, company.address, company.website, company.phone)"
                                                                    [ngbPopover]="popContent"  triggers="mouseenter:mouseleave" popoverTitle="Price details" placement="left"/>
                                                             <i class="fa fa-phone fa-3x  fa-color d-block d-sm-none"></i>
                                                         </label>
@@ -119,9 +119,25 @@
                         <div class="fs-title">
                                 <h2 class="fs-title" style="padding-top: 0px; padding-bottom: 0px;">Contact Information</h2>
                         </div>
-
-                        <h4 class="fs-output">We are going to send your information to: {{selectedCompanyTitle}}, {{selectedCompanyPhone}}, {{selectedCompanyAddress}}, {{selectedCompanyWebsite}}</h4>
-
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs align-middle">
+                                    <div class="hidden-xs hidden-sm card-avatar d-none d-md-block">
+                                        <a href="#avatar" *ngIf="selectedCompany.data"><img [src]="selectedCompany.data.image ? selectedCompany.data.image : 'assets/img/default-user.png'" alt="..."></a>
+                                    </div>
+                                </th>
+                                <td>{{selectedCompany.title || ''}}<br>
+                                    <star-rating-comp class="hidden-xs" [starType]="'svg'" [readOnly]="true" [rating]="selectedCompany.rating"></star-rating-comp>
+                                    <a class="hidden-xs" *ngIf="selectedCompany.website"  href="{{selectedCompany.website}}" target="_blank">{{selectedCompany.website}}</a>
+                                    <a class="hidden-xs" *ngIf="!selectedCompany.website" href="#">Website</a>
+                                </td>
+                                <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{selectedCompany.total_price | currency:'USD':'symbol' || ''}}</td>
+                                <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{selectedCompany.address || ''}}</td>
+                                <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{selectedCompany.phone || ''}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                         <h3 class="fs-subtitle">Tell us more about you</h3>
                         <div class="form-group" [ngClass]="{'has-error': isControlInvalid('firstName')}">
                             <input formControlName="firstName" id="firstName" type="text" placeholder="First Name*"/>
