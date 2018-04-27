@@ -7,15 +7,15 @@
                 <form id="msform" [formGroup]="actionUserForm">
                     <!-- fieldsets -->
                     <fieldset>
-                        <div class="progressbar-div" *ngIf="!contactForm">
+                        <div class="progressbar-div" *ngIf="!contactForm" >
                             <ul id="progressbar">
-                                <li class="active">Property info</li>
-                                <li class="non-active">Sales and loan amount</li>
-                                <li class="non-active">Your offers</li>
+                                <li class="active" style="font-size: 15px !important">Property info</li>
+                                <li class="non-active" style="font-size: 15px !important">Sales and loan amount</li>
+                                <li class="non-active" style="font-size: 15px !important">Your offers</li>
                             </ul>
                         </div>
                         <h2 class="fs-title">Compare Title Quotes Free</h2>
-                        <div class="select-form">
+                        <div class="select-form" style="padding-top: 10vh">
                             <input type="button" name="next" class="next action-button" (click)="setType('Purchase')" value="Purchase" />
                             <input type="button" name="next" class="next action-button" (click)="setType('Refinance')" value="Refinance" />
                         </div>
@@ -86,7 +86,7 @@
                                                     <a class="hidden-xs" *ngIf="company.website"  href="{{company.website}}" target="_blank">{{company.website}}</a>
                                                     <a class="hidden-xs" *ngIf="!company.website" href="#">Website</a>
                                                 </td>
-                                                <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{company.total_price | currency:'USD':'symbol' || ''}}</td>
+                                                <td class="align-middle" style="font-weight: 900; font-size: 1.6em; text-decoration: underline;">{{company.total_price | currency:'USD':'symbol' || ''}}</td>
                                                 <td class="align-middle">
                                                     <div class="form-check">
                                                         <ng-template #popContent>
@@ -117,7 +117,7 @@
                     </fieldset>
                     <div id="contactForm" *ngIf="contactForm" [@contact]>
                         <div class="fs-title">
-                                <h2 class="fs-title" style="padding-top: 0px; padding-bottom: 0px;">Contact Information</h2>
+                                <h2 class="fs-title" style="padding-top: 0px; padding-bottom: 0px; font-size: 1.1em">Contact Information</h2>
                         </div>
                         <table class="table">
                             <tbody>
@@ -127,30 +127,31 @@
                                         <a href="#avatar" *ngIf="selectedCompany.data"><img [src]="selectedCompany.data.image ? selectedCompany.data.image : 'assets/img/default-user.png'" alt="..."></a>
                                     </div>
                                 </th>
-                                <td>{{selectedCompany.title || ''}}<br>
+                                <td ><a style="font-size: 1.5em;" href="{{selectedCompany.website}}">{{selectedCompany.title || ''}} </a><br>
                                     <star-rating-comp class="hidden-xs" [starType]="'svg'" [readOnly]="true" [rating]="selectedCompany.rating"></star-rating-comp>
-                                    <a class="hidden-xs" *ngIf="selectedCompany.website"  href="{{selectedCompany.website}}" target="_blank">{{selectedCompany.website}}</a>
-                                    <a class="hidden-xs" *ngIf="!selectedCompany.website" href="#">Website</a>
+                                    <!-- <a class="hidden-xs" *ngIf="selectedCompany.website"  href="{{selectedCompany.website}}" target="_blank">{{selectedCompany.website}}</a> -->
+                                    <!-- <a class="hidden-xs" *ngIf="!selectedCompany.website" href="#">Website</a> -->
+                                    <a href="tel:{{selectedCompany.phone}}">{{selectedCompany.phone || ''}}</a>
                                 </td>
-                                <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{selectedCompany.total_price | currency:'USD':'symbol' || ''}}</td>
-                                <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{selectedCompany.address || ''}}</td>
-                                <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{selectedCompany.phone || ''}}</td>
+                                <td class="align-middle" style="font-weight: 900; font-size: 1.6em; text-decoration: underline;">{{selectedCompany.total_price | currency:'USD':'symbol' || ''}}</td>
+                                <!-- <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{selectedCompany.address || ''}}</td> -->
+                                <!-- <td class="align-middle"  style="font-weight: 300; font-size: 1.1em;"><a href="tel:{{selectedCompany.phone}}">{{selectedCompany.phone || ''}}</a></td> -->
                             </tr>
                             </tbody>
                         </table>
                         <div class="col-md-12">
-                            <h3 class="fs-subtitle">Tell us more about you</h3>
+                            <h3 class="fs-subtitle" style=" margin-top: 0% !important">Tell us more about you</h3>
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-5">
                                 <div class="form-group" [ngClass]="{'has-error': isControlInvalid('firstName')}">
-                                    <input formControlName="firstName" id="firstName" type="text" placeholder="First Name*"/>
+                                    <input style="width: 115% !important;" formControlName="firstName" id="firstName" type="text" placeholder="First Name*"/>
                                     <div class="error-msg">This field is required</div>
                                 </div>
                             </div>
                             <div class="col-md-5 col-md-push-1">
-                                <div class="form-group" [ngClass]="{'has-error': isControlInvalid('lastName')}">
-                                    <input formControlName="lastName" id="lastName" type="text" placeholder="Last Name*"/>
+                                <div class="form-group" [ngClass]="{'has-error': isControlInvalid('lastName')}" >
+                                    <input   formControlName="lastName" id="lastName" type="text" placeholder="Last Name*" style="width: 115% !important;"/>
                                     <div class="error-msg">This field is required</div>
                                 </div>
                             </div>
@@ -158,13 +159,13 @@
                         <div class="col-md-12">
                             <div class="col-md-5">
                                 <div class="form-group" [ngClass]="{'has-error': isControlInvalid('email')}">
-                                    <input formControlName="email" id="email" type="text" placeholder="Email*"/>
+                                    <input style="width: 115%;" formControlName="email" id="email" type="text" placeholder="Email*"/>
                                     <div class="error-msg">This field is required</div>
                                 </div>
                             </div>
                             <div class="col-md-5 col-md-push-1">
                                 <div class="form-group" [ngClass]="{'has-error': isControlInvalid('phone')}">
-                                    <input formControlName="phone" id="phone" type="text" placeholder="Phone*"/>
+                                    <input style="width: 115%;" ormControlName="phone" id="phone" type="text" placeholder="Phone*"/>
                                     <div class="error-msg">This field is required</div>
                                 </div>
                             </div>

@@ -124,6 +124,8 @@ white-space: pre-line;
     font-weight: normal;
     height: 50px;
 
+    
+
     &.ng-touched.ng-invalid{
         border-color: red;
     }
@@ -185,7 +187,7 @@ white-space: pre-line;
     font-weight: bold;
     font-family: ubuntu-medium;
     padding-top: 18px;
-    padding-bottom: 40px;
+    padding-bottom: 18px;
     height: 30%;
 }
 .fs-output {
@@ -276,6 +278,13 @@ white-space: pre-line;
 }
 
 
+#progressbar li {
+
+
+    font-size: 15px !important;
+
+}
+
 /* Not relevant to this form */
 .dme_link {
     margin-top: 30px;
@@ -322,21 +331,24 @@ input[disabled]{
 }
 
 .select-form {
-    padding-top: 20vh;
-    padding-left: 15vw;
-    padding-right: 15vw;
+    padding-top: 3vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
     height: 70%;
 }
 
 .result-form {
-    padding-top: 25vh;
-    padding-left: 5vw;
-    padding-right: 5vw;
-}
+    // padding-top: 25vh;
+    // padding-left: 5vw;
+    // padding-right: 5vw;
+
+    padding-top: 13vh;
+    padding-left: 2vw;
+    padding-right: 2vw;}
 
 .progressbar-div {
     position: absolute;
-    top: 100px;
+    top: 63px;
     width: 100%;
 }
 @media (max-width: 500px) {
