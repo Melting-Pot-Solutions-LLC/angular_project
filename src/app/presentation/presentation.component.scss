@@ -202,7 +202,7 @@ white-space: pre-line;
     font-family: ubuntu-medium;
     color: #101818;
     margin-bottom: 20px;
-    margin-top: 7%;
+    margin-top: 9%;
 }
 
 /*progressbar*/
@@ -222,6 +222,7 @@ white-space: pre-line;
     letter-spacing: 1px;
     font-weight: bold;
     font-family: ubuntu-medium;
+    z-index: 2;
 }
 
 #progressbar li:before {
@@ -237,6 +238,7 @@ white-space: pre-line;
     background: white;
     border-radius: 25px;
     margin: 0 auto 10px auto;
+    z-index: 20;
 }
 
 /*progressbar connectors*/
@@ -244,11 +246,11 @@ white-space: pre-line;
     content: '';
     width: 100%;
     height: 2px;
-    background: white;
+    background: red;
     position: absolute;
-    left: -50%;
-    top: 9px;
-    z-index: -1; /*put it behind the numbers*/
+    left: calc(-50% + 23px);
+    top: 20px;
+    z-index: -5; /*put it behind the numbers*/
 }
 
 #progressbar li:first-child:after {
@@ -259,13 +261,19 @@ white-space: pre-line;
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before, #progressbar li.active:after {
-    background: #eaedf2;
-    color: #f67b34;
+    // background: #eaedf2;
+    // color: #f67b34;
+
+    background: #f67b34;
+    color: white;
+
 }
 
 #progressbar li.activated:before, #progressbar li.activated:after {
     background: #f67b34;
     color: white;
+    // background: #eaedf2;
+    // color: #f67b34;
 }
 
 #progressbar li.non-active:before, #progressbar li.non-active:after {

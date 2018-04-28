@@ -3,12 +3,15 @@
     height: 190px;
     width: 240px;
 }
+
 a{
   cursor: pointer;
 }
+
 a.nonActive{
   cursor: default;
 }
+
 @media(max-width:1300px){
   .logo{
     position: relative;
@@ -16,11 +19,13 @@ a.nonActive{
     width: 190px;
   }
 }
+
 @media(max-width:800px){
   .logo{
     display: none;
   }
 }
+
 .navbar.navbar-transparent {
     padding-top: 0;
 }
