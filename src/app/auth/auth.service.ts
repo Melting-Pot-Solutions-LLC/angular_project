@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
+import {AbstractControl} from '@angular/forms';
 
 @Injectable()
 export class AuthService {
@@ -47,4 +48,18 @@ export class AuthService {
     setAuthState(auth) {
         this.authState = auth;
     }
+
+
+
+    static MatchPassword(AC: AbstractControl) {
+        let password = AC.get('password').value; // to get value in input tag
+        let confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
+         if(password != confirmPassword) {
+             console.log('false');
+             AC.get('confirmPassword').setErrors( {MatchPassword: true} )
+         } else {
+             console.log('true');
+             return null
+         }
+     }
 }

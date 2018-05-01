@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {AccountService} from '../../accounts/account.service';
 import {Router} from '@angular/router';
@@ -16,11 +17,17 @@ export class SignupComponent implements OnInit {
     errorMessage: string = null;
     email: string;
     password: string;
+    confirmPassword: string;
+    form: FormGroup;
 
     constructor(private authService: AuthService,
                 private accountService: AccountService,
                 private router: Router,
-                private alert: AlertsService) { }
+                private alert: AlertsService,
+                fb: FormBuilder) 
+    {
+
+    }
 
     ngOnInit() {}
 

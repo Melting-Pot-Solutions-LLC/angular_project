@@ -9,13 +9,16 @@
                     <fieldset>
                         <div class="progressbar-div" *ngIf="!contactForm" >
                             <ul id="progressbar">
-                                <li class="active" style="font-size: 15px !important">Property info</li>
+                                <!-- <li class="active" style="font-size: 15px !important">Property info</li>
                                 <li class="non-active" style="font-size: 15px !important">Sales and loan amount</li>
-                                <li class="non-active" style="font-size: 15px !important">Your offers</li>
+                                <li class="non-active" style="font-size: 15px !important">Your offers</li> -->
+                                <li class="active" style="font-size: 15px !important"></li>
+                                <li class="non-active" style="font-size: 15px !important"></li>
+                                <li class="non-active" style="font-size: 15px !important"></li>
                             </ul>
                         </div>
                         <h2 class="fs-title">Compare Title Quotes Free</h2>
-                        <div class="select-form" style="padding-top: 10vh">
+                        <div class="select-form" style="padding-top: 6vh">
                             <input type="button" name="next" class="next action-button" (click)="setType('Purchase')" value="Purchase" />
                             <input type="button" name="next" class="next action-button" (click)="setType('Refinance')" value="Refinance" />
                         </div>
@@ -23,13 +26,17 @@
                     <fieldset id="highForm">
                         <div class="progressbar-div" *ngIf="!contactForm">
                             <ul id="progressbar">
-                                <li class="activated">Property info</li>
+                                <!-- <li class="activated">Property info</li>
                                 <li class="active">Sales and loan amount</li>
-                                <li class="non-active">Your offers</li>
+                                <li class="non-active">Your offers</li> -->
+
+                                <li class="activated"></li>
+                                <li class="active"></li>
+                                <li class="non-active"></li>
                             </ul>
                         </div>
-                        <h2 class="fs-title">What is the property Address and Title's Regrads?</h2>
-                        <div class="select-form">
+                        <h2 class="fs-title">What is the sale price, loan amount and jurisdiction?</h2>
+                        <div class="select-form" style="padding-top: 0.5vh;">
                             <h3 class="fs-subtitle d-none d-sm-block">Property you are buying, selling or refinancing:</h3>
                             <div class="form-group" [ngClass]="{'has-error': isControlInvalid('price')}">
                                 <input type="text" formControlName="price" id="price" placeholder="Purchase Price*"/>
@@ -61,13 +68,16 @@
                     <fieldset *ngIf="!contactForm">
                         <div class="progressbar-div" *ngIf="!contactForm">
                             <ul id="progressbar">
-                                <li class="activated">Property info</li>
+                                <!-- <li class="activated">Property info</li>
                                 <li class="activated">Sales and loan amount</li>
-                                <li class="active">Your offers</li>
+                                <li class="active">Your offers</li> -->
+                                <li class="activated"></li>
+                                <li class="activated"></li>
+                                <li class="active"></li>
                             </ul>
                         </div>
                         <h2 class="fs-title">Here are your offers</h2>
-                        <div class="result-form">
+                        <div class="result-form" style="padding-top: 8vh;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
@@ -78,24 +88,29 @@
                                                 (click)="selectCompany(company)">
                                                 <th class="hidden-xs align-middle">
                                                     <div class="hidden-xs hidden-sm card-avatar d-none d-md-block">
-                                                        <a href="#avatar" *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
+                                                        <a *ngIf="company.data"><img [src]="company.data.image ? company.data.image : 'assets/img/default-user.png'" alt="..."></a>
                                                     </div>
                                                 </th>
-                                                <td>{{company.title || ''}}<br>
+                                                <td style="padding-top: 2em;">{{company.title || ''}}<br>
                                                     <star-rating-comp class="hidden-xs" [starType]="'svg'" [readOnly]="true" [rating]="company.rating"></star-rating-comp>
                                                     <a class="hidden-xs" *ngIf="company.website"  href="{{company.website}}" target="_blank">{{company.website}}</a>
                                                     <a class="hidden-xs" *ngIf="!company.website" href="#">Website</a>
                                                 </td>
-                                                <td class="align-middle" style="font-weight: 900; font-size: 1.6em; text-decoration: underline;">{{company.total_price | currency:'USD':'symbol' || ''}}</td>
+                                                <td class="align-middle" style="font-weight: 900; font-size: 1.6em;" >
+                                                    <div style="height: 100%; width: 100%" [ngbPopover]="popContent"  triggers="mouseenter:mouseleave" popoverTitle="Price details" placement="left">
+                                                    <ng-template #popContent>
+                                                     Title Insurance: ${{company.totalInfo?.title_insurance}} <br>
+                                                    Title Company Fees: ${{company.totalInfo?.companyFee}}<br>
+                                                    Government Fees : ${{company.totalInfo?.government_fee}}<br></ng-template>
+                                                    {{company.total_price | currency:'USD':'symbol' || ''}}
+                                                </div>
+                                                </td>
                                                 <td class="align-middle">
                                                     <div class="form-check">
-                                                        <ng-template #popContent>
-                                                            Title Insurance: ${{company.totalInfo?.title_insurance}} <br>
-                                                            Title Company Fees: ${{company.totalInfo?.companyFee}}<br>
-                                                            Government Fees : ${{company.totalInfo?.government_fee}}<br></ng-template>
+                                                        
                                                         <label class="form-check-label">
                                                             <input type="button" name="next" class="action-button d-sm-block" value="Contact"
-                                                                   [ngbPopover]="popContent"  triggers="mouseenter:mouseleave" popoverTitle="Price details" placement="left"/>
+                                                                   />
                                                             <i class="fa fa-phone fa-3x  fa-color d-block d-sm-none"></i>
                                                         </label>
                                                     </div>
@@ -119,26 +134,50 @@
                         <div class="fs-title">
                                 <h2 class="fs-title" style="padding-top: 0px; padding-bottom: 0px; font-size: 1.1em">Contact Information</h2>
                         </div>
-                        <table class="table">
+
+                        <div class="container" style="margin-top: 15px; margin-bottom: 15px">
+                                <div class="row">
+                                        <div class="col-1">
+                                            </div>
+
+                                  <div class="col-4">
+                                        <div class="hidden-xs hidden-sm card-avatar d-none d-md-block center">
+                                                <a href="#avatar" *ngIf="selectedCompany.data"><img [src]="selectedCompany.data.image ? selectedCompany.data.image : 'assets/img/default-user.png'" alt="..."></a>
+                                            </div>
+                                  </div>
+                                  <div class="col-3">
+                                        <a style="font-size: 1.5em;" href="{{selectedCompany.website}}">{{selectedCompany.title || ''}} </a><br>
+                                        <star-rating-comp class="hidden-xs" [starType]="'svg'" [readOnly]="true" [rating]="selectedCompany.rating"></star-rating-comp>
+                                        <!-- <a class="hidden-xs" *ngIf="selectedCompany.website"  href="{{selectedCompany.website}}" target="_blank">{{selectedCompany.website}}</a> -->
+                                        <!-- <a class="hidden-xs" *ngIf="!selectedCompany.website" href="#">Website</a> -->
+                                        <a href="tel:{{selectedCompany.phone}}" >{{selectedCompany.phone || ''}}</a>
+                                  </div>
+                                  <div class="col-2" style="font-weight: 900;
+                                  font-size: 1.6em; display: flex; align-items: center;">
+                                        {{selectedCompany.total_price | currency:'USD':'symbol' || ''}}
+                                  </div>
+                                  <div class="col-2"></div>
+                                </div>
+                              </div>
+
+                        <!-- <table class="table">
                             <tbody>
+
                             <tr>
                                 <th class="hidden-xs align-middle">
-                                    <div class="hidden-xs hidden-sm card-avatar d-none d-md-block">
+                                    <div class="hidden-xs hidden-sm card-avatar d-none d-md-block center">
                                         <a href="#avatar" *ngIf="selectedCompany.data"><img [src]="selectedCompany.data.image ? selectedCompany.data.image : 'assets/img/default-user.png'" alt="..."></a>
                                     </div>
                                 </th>
                                 <td ><a style="font-size: 1.5em;" href="{{selectedCompany.website}}">{{selectedCompany.title || ''}} </a><br>
                                     <star-rating-comp class="hidden-xs" [starType]="'svg'" [readOnly]="true" [rating]="selectedCompany.rating"></star-rating-comp>
-                                    <!-- <a class="hidden-xs" *ngIf="selectedCompany.website"  href="{{selectedCompany.website}}" target="_blank">{{selectedCompany.website}}</a> -->
-                                    <!-- <a class="hidden-xs" *ngIf="!selectedCompany.website" href="#">Website</a> -->
                                     <a href="tel:{{selectedCompany.phone}}">{{selectedCompany.phone || ''}}</a>
                                 </td>
-                                <td class="align-middle" style="font-weight: 900; font-size: 1.6em; text-decoration: underline;">{{selectedCompany.total_price | currency:'USD':'symbol' || ''}}</td>
-                                <!-- <td class="align-middle" style="font-weight: 900; font-size: 1.3em;">{{selectedCompany.address || ''}}</td> -->
-                                <!-- <td class="align-middle"  style="font-weight: 300; font-size: 1.1em;"><a href="tel:{{selectedCompany.phone}}">{{selectedCompany.phone || ''}}</a></td> -->
+                                <td class="align-middle" style="font-weight: 900; font-size: 1.6em;">{{selectedCompany.total_price | currency:'USD':'symbol' || ''}}</td>
+                                
                             </tr>
                             </tbody>
-                        </table>
+                        </table> -->
                         <div class="col-md-12">
                             <h3 class="fs-subtitle" style=" margin-top: 0% !important">Tell us more about you</h3>
                         </div>
@@ -159,13 +198,13 @@
                         <div class="col-md-12">
                             <div class="col-md-5">
                                 <div class="form-group" [ngClass]="{'has-error': isControlInvalid('email')}">
-                                    <input style="width: 115%;" formControlName="email" id="email" type="text" placeholder="Email*"/>
+                                    <input style="width: 115%;" formControlName="email" id="email" type="text" placeholder="Email"/>
                                     <div class="error-msg">This field is required</div>
                                 </div>
                             </div>
                             <div class="col-md-5 col-md-push-1">
                                 <div class="form-group" [ngClass]="{'has-error': isControlInvalid('phone')}">
-                                    <input style="width: 115%;" ormControlName="phone" id="phone" type="text" placeholder="Phone*"/>
+                                    <input style="width: 115%;" formControlName="phone" id="phone" type="text" placeholder="Phone*"/>
                                     <div class="error-msg">This field is required</div>
                                 </div>
                             </div>

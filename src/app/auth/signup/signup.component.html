@@ -20,23 +20,35 @@
                                     <i class="fa fa-twitter"></i>
                                 </a>
                             </div> -->
+                            <!-- <form [formGroup]="form"> -->
                             <div class="register-form">
-                                <label>Email</label>
+                                <label for="Email">Email</label>
                                 <input type="text" class="form-control"
                                        placeholder="Email"
                                        name="email"
                                        [(ngModel)]="email"
-                                       required
-                                       email>
+                                       required>
 
-                                <label>Password</label>
-                                <input type="password" class="form-control"
+                                <label for="password">Password</label>
+                                <input  type="password" class="form-control"
                                        placeholder="Password"
                                        name="password"
                                        [(ngModel)]="password"
                                        required>
+
+
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control"
+                                        placeholder="Confirm Password"
+                                        name="confirmPassword"
+                                        [(ngModel)]="confirmPassword"
+                                        required>
+
+
+                                <div class="alert alert-danger" *ngIf="this.password != this.confirmPassword">Passwords don't match</div>
                                 <button class="btn btn-danger btn-block btn-round" (click)="onRegister()">Register</button>
                             </div>
+                        <!-- </form> -->
                             <div class="forgot">
                                 <a [routerLink]="['/reset-password']" class="btn btn-link btn-danger">Forgot password?</a>
                             </div>

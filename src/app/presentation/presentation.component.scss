@@ -162,7 +162,7 @@ white-space: pre-line;
 }
 
 #msform .action-button-previous {
-    width: 100px;
+    width: 150px;
     background: #C5C5F1;
     font-weight: bold;
     color: white;
@@ -390,3 +390,11 @@ fieldset{
         background-position-y: -33vh;
     }
  }
+
+
+ .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

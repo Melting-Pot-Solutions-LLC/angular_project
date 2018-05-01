@@ -179,11 +179,12 @@ export class PresentationComponent implements OnInit {
 
     selectCompany(company) {
         this.selectedCompany = company;
-        this.selectedCompanyEmail = company.companyEmail;
-        this.selectedCompanyTitle = company.companyTitle;
-        this.selectedCompanyWebsite = company.companyWebsite;
-        this.selectedCompanyPhone = company.companyPhone;
-        this.selectedCompanyAddress = company.companyAddress;
+        this.selectedCompanyEmail = company.email;
+        console.log(company);
+        this.selectedCompanyTitle = company.title;
+        this.selectedCompanyWebsite = company.website;
+        this.selectedCompanyPhone = company.phone;
+        this.selectedCompanyAddress = company.address;
         this.open();
     }
 
@@ -192,7 +193,7 @@ export class PresentationComponent implements OnInit {
     }
 
     close() {
-        this.router.navigate(['/landing']);
+        this.router.navigate(['quoteli.com']);
     }
 
     sendEmailToClient() {
@@ -219,14 +220,16 @@ export class PresentationComponent implements OnInit {
         let adminEmailData = {};
         adminEmailData['merge_purchaseprice'] = this.actionUserForm.get('price').value;
         adminEmailData['merge_loanamount'] = this.actionUserForm.get('loanAmount').value;
-        adminEmailData['merge_zip'] = this.actionUserForm.get('zip').value;
-        adminEmailData['merge_country'] = this.actionUserForm.get('country').value;
+        // adminEmailData['merge_zip'] = this.actionUserForm.get('zip').value;
+        // adminEmailData['merge_country'] = this.actionUserForm.get('country').value;
         adminEmailData['merge_state'] = this.actionUserForm.get('state').value;
-        adminEmailData['merge_city'] = this.actionUserForm.get('city').value;
+        // adminEmailData['merge_city'] = this.actionUserForm.get('city').value;
         adminEmailData['merge_fname'] = this.actionUserForm.get('firstName').value;
         adminEmailData['merge_lname'] = this.actionUserForm.get('lastName').value;
         adminEmailData['merge_useremail'] = this.actionUserForm.get('email').value;
         adminEmailData['merge_userphone'] = this.actionUserForm.get('phone').value;
+
+        console.log(this.selectedCompanyEmail);
 
         const companyFormData = new FormData();
         companyEmail = Object.assign(companyEmail, adminEmailData);
@@ -242,14 +245,14 @@ export class PresentationComponent implements OnInit {
                 return this.sendEmailToAdmin();
             })
             .then(res => {
-                // console.log(res);
+                 console.log(res);
                 this._alert.create('success', 'Your information will be received by the title companies you selected', {
                     overlay: true,
                     overlayClickToClose: true,
                     showCloseButton: true,
                     duration: 5000
                 });
-                setTimeout(() => this.router.navigate(['/landing']), 1200);
+                setTimeout(() => this.router.navigate(['quoteli.com']), 1200);
             })
             .catch(err => {
                 console.error(err);
