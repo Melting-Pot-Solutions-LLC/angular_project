@@ -246,7 +246,7 @@ export class PresentationComponent implements OnInit {
             })
             .then(res => {
                  console.log(res);
-                this._alert.create('success', 'Your information will be received by the title companies you selected', {
+                this._alert.create('success', 'Your information has been received and a representative will be reaching out to you', {
                     overlay: true,
                     overlayClickToClose: true,
                     showCloseButton: true,
