@@ -17,8 +17,9 @@
                                 <li class="non-active" style="font-size: 15px !important"></li>
                             </ul>
                         </div>
-                        <h2 class="fs-title">Compare Title Quotes Free</h2>
-                        <div class="select-form" style="padding-top: 6vh">
+                        <h2 class="fs-title">Are you looking to purchase or refinance?</h2>
+                        <h3 style="font-size: 1.5em; margin-top: 0.5em; font-weight: 900;"><i>We hope you find the best title quotes for free</i></h3>
+                        <div class="select-form" style="padding-top: 11vh">
                             <input type="button" name="next" class="next action-button" (click)="setType('Purchase')" value="Purchase" />
                             <input type="button" name="next" class="next action-button" (click)="setType('Refinance')" value="Refinance" />
                         </div>
@@ -35,9 +36,10 @@
                                 <li class="non-active"></li>
                             </ul>
                         </div>
-                        <h2 class="fs-title">What is the sale price, loan amount and jurisdiction?</h2>
-                        <div class="select-form" style="padding-top: 0.5vh;">
-                            <h3 class="fs-subtitle d-none d-sm-block">Property you are buying, selling or refinancing:</h3>
+                        <h2 class="fs-title">Tell us more about the property</h2>
+                        <h3 style="font-size: 1.5em; margin-top: 0.5em; font-weight: 900;"><i>This helps us fine tune the results to bring you the best quote</i></h3>
+                        <div class="select-form" style="padding-top: 11vh;">
+                            <!-- <h3 class="fs-subtitle d-none d-sm-block">Property you are buying, selling or refinancing:</h3> -->
                             <div class="form-group" [ngClass]="{'has-error': isControlInvalid('price')}">
                                 <input type="text" formControlName="price" id="price" placeholder="Purchase Price*"/>
                                 <div class="error-msg" *ngIf="isControlInvalid('price')">This field is required</div>
@@ -76,8 +78,9 @@
                                 <li class="active"></li>
                             </ul>
                         </div>
-                        <h2 class="fs-title">Here are your offers</h2>
-                        <div class="result-form" style="padding-top: 8vh;">
+                        <h2 class="fs-title">Here are your quotes from the best companies in the area</h2>
+                        <h3 style="font-size: 1.5em; margin-top: 0.5em; font-weight: 900;"><i>Contact a company below to secure the quote</i></h3>
+                        <div class="result-form" style="padding-top: 9vh;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
@@ -132,8 +135,9 @@
                     </fieldset>
                     <div id="contactForm" *ngIf="contactForm" [@contact]>
                         <div class="fs-title">
-                                <h2 class="fs-title" style="padding-top: 0px; padding-bottom: 0px; font-size: 1.1em">Contact Information</h2>
+                                <h2 class="fs-title" style="padding-top: 0px; padding-bottom: 0px; font-size: 1.1em">Let's get your quote</h2>
                         </div>
+                        <h3 style="font-size: 1.5em; margin-top: 0.5em; font-weight: 900;"><i>Tell us more about you, so we can get you connected</i></h3>
 
                         <div class="container" style="margin-top: 15px; margin-bottom: 15px">
                                 <div class="row">
@@ -178,9 +182,9 @@
                             </tr>
                             </tbody>
                         </table> -->
-                        <div class="col-md-12">
-                            <h3 class="fs-subtitle" style=" margin-top: 0% !important">Tell us more about you</h3>
-                        </div>
+                        <!-- <div class="col-md-12">
+                            <h3 class="fs-subtitle" style=" margin-top: 0% !important">Tell us more about you, so we can get you connected</h3>
+                        </div> -->
                         <div class="col-md-12">
                             <div class="col-md-5">
                                 <div class="form-group" [ngClass]="{'has-error': isControlInvalid('firstName')}">
@@ -209,6 +213,8 @@
                                 </div>
                             </div>
                         </div>
+                        <p style="">We promise to keep your information safe and never spam you</p>
+
                         <input type="button"
                                name="next"
                                class="action-button"

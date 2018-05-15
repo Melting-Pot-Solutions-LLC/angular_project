@@ -16,16 +16,15 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto" >
                 <li class="nav-item" *ngIf="!isDocumentation() && !authService.isAuthenticated()">
-                    <a [routerLink]="['/login']" class="nav-link" style="background-color: #47617f; border-radius: 8px; border: none; color: white; border-radius: 8px; border: none;"><i style="font-size: 1.5em !important" class="fa fa-sign-in icon-2x" aria-hidden="true"></i>       Log in</a>
+                    <a [routerLink]="['/login']" class="nav-link" style="background-color: #47617f; border-radius: 8px; border: none; color: white; border-radius: 8px; border: none;"><i style="font-size: 1.5em !important" class="fa fa-sign-in icon-2x" aria-hidden="true"></i>       Are you a title company?</a>
                 </li>
 
                 <!-- <li class="nav-item" *ngIf="isHome()">
                     <a href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=pk2-free-local" target="_blank" class="btn btn-danger btn-round disabled">Upgrade to Pro</a>
                 </li> -->
-                <li class="nav-item" *ngIf="!isHome() && !authService.isAuthenticated()" >
-                    <a [routerLink]="['/signup']"  class="nav-link" style="margin-left: 5px; color: white; background-color: #47617f; border-radius: 8px; border: none;"> <i class="fa fa-user-plus icon-2x" aria-hidden="true" style="font-size: 1.3em !important; margin-right: 3px;top: 2px"></i>      Register as a company</a>
-                    <!-- <a [routerLink]="['/home']" *ngIf="isDocumentation()" class="nav-link">Back to Kit</a> -->
-                </li>
+                <!-- <li class="nav-item" *ngIf="!isHome() && !authService.isAuthenticated()" >
+                    <a [routerLink]="['/signup']"  class="nav-link" style="margin-left: 5px; color: white; background-color: #47617f; border-radius: 8px; border: none;"> <i class="fa fa-user-plus icon-2x" aria-hidden="true" style="font-size: 1.3em !important; margin-right: 3px;top: 2px"></i>      Are you a title company?</a>
+                </li> -->
                 <ng-template [ngIf]="authService.isAuthenticated()">
                     <li class="nav-item">
                         <a [routerLink]="['/user-profile']"  class="nav-link"><i class="nc-icon nc-circle-10"></i>Profile</a>
