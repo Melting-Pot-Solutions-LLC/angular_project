@@ -183,6 +183,10 @@ export class PresentationComponent implements OnInit {
             if(leftSide.total_price > rightSide.total_price) return 1;
             return 0;
         })
+
+        this.accounts.splice(3, this.accounts.length - 3);
+
+
     }
 
     selectCompany(company) {

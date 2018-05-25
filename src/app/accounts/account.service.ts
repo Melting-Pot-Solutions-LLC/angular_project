@@ -21,7 +21,7 @@ export class AccountService {
     }
 
     getAccounts(): Observable<any[]> {
-        return this.db.list('accounts', ref => ref.orderByChild('total_price').limitToFirst(3)).valueChanges()
+        return this.db.list('accounts', ref => ref.orderByChild('total_price')).valueChanges()
     }
 
     saveAccount(account: Account) {
