@@ -57,6 +57,8 @@ export class PresentationComponent implements OnInit {
     states = ['State*', 'DC', 'VA'];
     cities = ['City*', 'Columbia', 'Greenville', 'Washington'];
 
+    showPurchasePrice: boolean = true;
+
     constructor(private db: AngularFireDatabase,
                 private _alert: AlertsService,
                 private router: Router,
@@ -159,11 +161,17 @@ export class PresentationComponent implements OnInit {
 
     setType(type: string) {
         // console.log('im here ' + type);
+        if(type == 'Purchase') this.showPurchasePrice = true;
+        else { this.showPurchasePrice = false;}
+
         this.actionUserForm.patchValue({type: type});
+
     }
 
     calculateTotals() {
         // console.log(this.actionUserForm.value);
+        if (this.showPurchasePrice == false) this.actionUserForm.patchValue({price: 0});
+
         for (const company of this.accounts) {
             const totalInfo = this.actionFormService.getTotal(<ActionFormModel>this.actionUserForm.value, company.fees);
             company.totalInfo = totalInfo;

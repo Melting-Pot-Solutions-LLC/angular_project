@@ -1,7 +1,6 @@
 
 <div class="page-header">
     <!-- MultiStep Form -->
-
          <div class="row">
             <div class="col-xs-12">
                 <form id="msform" [formGroup]="actionUserForm">
@@ -17,12 +16,13 @@
                                 <li class="non-active" style="font-size: 15px !important"></li>
                             </ul>
                         </div>
-                        <h2 class="fs-title">Are you looking to purchase or refinance?</h2>
-                        <h3 style="font-size: 1.5em; margin-top: 0.5em; font-weight: 900;"><i>We help you find the best title quotes for free</i></h3>
+                        <h2 class="fs-title">We help you find the best title quotes for free </h2>
+                        <h3 style="font-size: 1.5em; margin-top: 0.5em; font-weight: 900;"><i>Are you looking to purchase or refinance?</i></h3>
                         <div class="select-form" style="padding-top: 11vh">
                             <input type="button" name="next" class="next action-button" (click)="setType('Purchase')" value="Purchase" />
                             <input type="button" name="next" class="next action-button" (click)="setType('Refinance')" value="Refinance" />
                         </div>
+                        <p style="">Your information and Quoteli is secured by <a href="https://www.cloudflare.com/">Cloud Flare</a> </p>
                     </fieldset>
                     <fieldset id="highForm">
                         <div class="progressbar-div" *ngIf="!contactForm">
@@ -40,7 +40,7 @@
                         <h3 style="font-size: 1.5em; margin-top: 0.5em; font-weight: 900;"><i>This helps us fine tune the results to bring you the best quote</i></h3>
                         <div class="select-form" style="padding-top: 11vh;">
                             <!-- <h3 class="fs-subtitle d-none d-sm-block">Property you are buying, selling or refinancing:</h3> -->
-                            <div class="form-group" [ngClass]="{'has-error': isControlInvalid('price')}">
+                            <div class="form-group" *ngIf="showPurchasePrice" [ngClass]="{'has-error': isControlInvalid('price')}">
                                 <input type="text" formControlName="price" id="price" placeholder="Purchase Price*"/>
                                 <div class="error-msg" *ngIf="isControlInvalid('price')">This field is required</div>
                             </div>
@@ -62,8 +62,8 @@
                                     name="next"
                                     class="next action-button"
                                     (click)="calculateTotals()"
-                                    [disabled]="isControlInvalid('price') || isControlInvalid('loanAmount') ||
-                                    isControlInvalid('zip') || actionUserForm.get('price').hasError('required') ||
+                                    [disabled]="(showPurchasePrice && isControlInvalid('price')) || isControlInvalid('loanAmount') ||
+                                    isControlInvalid('zip') || ( showPurchasePrice && actionUserForm.get('price').hasError('required')) ||
                                     actionUserForm.get('loanAmount').hasError('required') || isInvalidState()" value="Next"/>
                         </div>
                     </fieldset>
@@ -99,14 +99,15 @@
                                                     <a class="hidden-xs" *ngIf="company.website"  href="{{company.website}}" target="_blank">{{company.website}}</a>
                                                     <a class="hidden-xs" *ngIf="!company.website" href="#">Website</a>
                                                 </td>
-                                                <td class="align-middle" style="font-weight: 900; font-size: 1.6em;" >
+                                                <td class="align-middle" style="font-weight: 900; font-size: 1.6em; padding-right: 0px; padding-left: 0px" >
                                                     <div style="height: 100%; width: 100%" [ngbPopover]="popContent"  triggers="mouseenter:mouseleave" popoverTitle="Price details" placement="left">
                                                     <ng-template #popContent>
                                                      Title Insurance: ${{company.totalInfo?.title_insurance}} <br>
                                                     Title Company Fees: ${{company.totalInfo?.companyFee}}<br>
                                                     Government Fees : ${{company.totalInfo?.government_fee}}<br></ng-template>
-                                                    {{company.total_price | currency:'USD':'symbol' || ''}}
+                                                    {{company.total_price | currency:'USD':'symbol' || ''}}  <p><i>see details</i></p>
                                                 </div>
+                                                
                                                 </td>
                                                 <td class="align-middle">
                                                     <div class="form-check">
@@ -202,7 +203,7 @@
                         <div class="col-md-12">
                             <div class="col-md-5">
                                 <div class="form-group" [ngClass]="{'has-error': isControlInvalid('email')}">
-                                    <input style="width: 115%;" formControlName="email" id="email" type="text" placeholder="Email"/>
+                                    <input style="width: 115%;" formControlName="email" id="email" type="text" placeholder="Email*"/>
                                     <div class="error-msg">This field is required</div>
                                 </div>
                             </div>
@@ -216,9 +217,10 @@
                         <p style="">We promise to keep your information safe and never spam you</p>
 
                         <input type="button"
+                               style="width: 218px"
                                name="next"
                                class="action-button"
-                               value="Get In Touch"
+                               value="Lock In Your Quote Now"
                                (click)="send()"
                                [disabled]="actionUserForm.get('firstName').hasError('required') ||
                                 actionUserForm.get('lastName').hasError('required') ||
