@@ -37,6 +37,9 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { StarRatingModule } from 'angular-star-rating';
 import {ActionFormService} from './shared/services/action-form.service';
 
+import { HttpModule } from '@angular/http';
+import { EmbedVideo } from 'ngx-embed-video';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +56,7 @@ import {ActionFormService} from './shared/services/action-form.service';
       ResetPasswordComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     NgbModule.forRoot(),
     FormsModule,
@@ -67,7 +71,8 @@ import {ActionFormService} from './shared/services/action-form.service';
       AngularFireDatabaseModule,
       NgbModalModule,
       StarRatingModule.forRoot(),
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      EmbedVideo.forRoot()
   ],
   providers: [AuthService, AuthGuardService, AccountService, UploadService, ActionFormService],
   bootstrap: [AppComponent],
