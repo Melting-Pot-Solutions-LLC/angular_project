@@ -4,13 +4,21 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-4 col-sm-4 mr-auto ml-auto">
+                    <div class="col-lg-7 d-lg-block d-none video-column">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/W1woCkEXGcc?rel=0&amp;controls=0&amp;showinfo=0"
+                                    frameborder="0"
+                                    allow="autoplay; encrypted-media"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 signup-form-column">
                         <div class="card card-register" style="background-color: white; color: #264C82;">
                             <h4 class="title">Ready For Closing Leads? Sign up now!</h4>
                             <div class="alert alert-warning" role="alert" *ngIf="errorMessage">
                                 <p>{{errorMessage}}</p>
                             </div>
-                            
+
                             <div class="register-form">
                                 <label for="Email">Email</label>
                                 <input type="text" class="form-control"
@@ -45,7 +53,7 @@
                             <div class="forgot">
                                 <a [routerLink]="['/login']" class="btn btn-link btn-danger" style="color: #264C82;">Already Registered?</a>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <div class="footer register-footer text-center">
