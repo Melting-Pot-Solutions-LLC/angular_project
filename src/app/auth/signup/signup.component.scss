@@ -21,6 +21,18 @@
   padding: 0;
 }
 
+.video-title {
+  color: #B33C12;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.register-form .sign-up-control{
+  border: 2px solid !important;
+  border-color: rgba(0,0,0,0.5) !important;
+}
+
 .signup-form-column {
   @media (min-width: 440px) {
     margin-left: 7%;
