@@ -1,5 +1,5 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {Component, OnInit, ElementRef} from '@angular/core';
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {AuthService} from '../../auth/auth.service';
 import {Router} from '@angular/router';
 
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     onLogin: boolean = false;
 
-    constructor(public location: Location, private element : ElementRef,
+    constructor(public location: Location, private element: ElementRef,
                 private router: Router,
                 private authService: AuthService) {
         this.sidebarVisible = false;
@@ -24,13 +24,16 @@ export class NavbarComponent implements OnInit {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     }
+
     ngAfterContentChecked() {
         let url: string = this.router.url.substring(1);
         this.onLogin = url === 'login';
     }
-    homeClicked(){
+
+    homeClicked() {
         this.router.navigate(['/']);
     }
+
     sidebarOpen() {
         // console.log("navbar");
         const toggleButton = this.toggleButton;
@@ -38,7 +41,7 @@ export class NavbarComponent implements OnInit {
         // console.log(html);
         // console.log(toggleButton, 'toggle');
 
-        setTimeout(function(){
+        setTimeout(function () {
             toggleButton.classList.add('toggled');
         }, 500);
         html.classList.add('nav-open');
@@ -46,6 +49,7 @@ export class NavbarComponent implements OnInit {
         this.sidebarVisible = true;
         // console.log("navbar");
     };
+
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
         // console.log(html);
@@ -54,6 +58,7 @@ export class NavbarComponent implements OnInit {
         html.classList.remove('nav-open');
         // console.log("navbar");
     };
+
     sidebarToggle() {
         // console.log("navbar");
         // const toggleButton = this.toggleButton;
@@ -64,24 +69,34 @@ export class NavbarComponent implements OnInit {
             this.sidebarClose();
         }
     };
+
     isHome() {
         // console.log("navbar");
         var titlee = this.location.prepareExternalUrl(this.location.path());
 
-        if( titlee === '/home' ) {
+        if (titlee === '/home') {
             return true;
         }
         else {
             return false;
         }
     }
+
     isDocumentation() {
         // console.log("navbar");
         var titlee = this.location.prepareExternalUrl(this.location.path());
-        if( titlee === '/documentation' ) {
+        if (titlee === '/documentation') {
             return true;
         }
         else {
+            return false;
+        }
+    }
+
+    isSignUp() {
+        if (this.location.path() === '/signup') {
+            return true;
+        } else {
             return false;
         }
     }

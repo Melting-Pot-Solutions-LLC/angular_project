@@ -15,7 +15,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto" >
-                <li class="nav-item" *ngIf="!isDocumentation() && !authService.isAuthenticated()">
+                <li class="nav-item" *ngIf="!isDocumentation() && !isSignUp() && !authService.isAuthenticated()">
                     <a [routerLink]="['/login']" class="nav-link" style="background-color: #47617f; border-radius: 8px; border: none; color: white; border-radius: 8px; border: none;"><i style="font-size: 1.5em !important" class="fa fa-sign-in icon-2x" aria-hidden="true"></i>       Are you a title company?</a>
                 </li>
 
