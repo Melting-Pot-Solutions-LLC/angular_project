@@ -1,3 +1,9 @@
+/*******************************************
+** Author            : Melting Pot Solutions LLC
+** Last modified     : 09/05/2018
+**
+********************************************/
+
 import {TotalInfoModel} from '../shared/models/total.Info.model';
 
 export class Account {

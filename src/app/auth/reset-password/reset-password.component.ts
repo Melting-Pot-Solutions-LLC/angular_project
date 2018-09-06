@@ -1,3 +1,10 @@
+/*******************************************
+** Author            : Melting Pot Solutions LLC
+** Last modified     : 09/05/2018
+**
+********************************************/
+
+
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';

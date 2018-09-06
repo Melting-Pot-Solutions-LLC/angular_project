@@ -1,3 +1,9 @@
+/*******************************************
+** Author            : Melting Pot Solutions LLC
+** Last modified     : 09/05/2018
+**
+********************************************/
+
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {ReplaySubject} from 'rxjs/ReplaySubject';

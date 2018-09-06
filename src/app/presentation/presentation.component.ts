@@ -1,3 +1,9 @@
+/*******************************************
+** Author            : Melting Pot Solutions LLC
+** Last modified     : 09/05/2018
+**
+********************************************/
+
 import {Component, EventEmitter, OnInit} from '@angular/core';
 import {JasperoAlertsModule, AlertsService} from '@jaspero/ng2-alerts';
 import {Router} from '@angular/router';

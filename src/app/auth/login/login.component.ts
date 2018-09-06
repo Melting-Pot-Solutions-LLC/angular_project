@@ -1,3 +1,9 @@
+/*******************************************
+** Author            : Melting Pot Solutions LLC
+** Last modified     : 09/05/2018
+**
+********************************************/
+
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../auth.service';
