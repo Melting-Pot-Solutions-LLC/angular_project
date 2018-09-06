@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto" >
                 <li class="nav-item" *ngIf="!isDocumentation() && !isSignUp() && !authService.isAuthenticated()">
-                    <a [routerLink]="['/login']" class="nav-link" style="background-color: #47617f; border-radius: 8px; border: none; color: white; border-radius: 8px; border: none;"><i style="font-size: 1.5em !important" class="fa fa-sign-in icon-2x" aria-hidden="true"></i>       Are you a title company?</a>
+                    <a [routerLink]="['/signup']" class="nav-link" style="background-color: #47617f; border-radius: 8px; border: none; color: white; border-radius: 8px; border: none;"><i style="font-size: 1.5em !important" class="fa fa-sign-in icon-2x" aria-hidden="true"></i>       Are you a title company?</a>
                 </li>
 
                 <!-- <li class="nav-item" *ngIf="isHome()">
@@ -38,7 +38,12 @@
                 <li class="nav-item" *ngIf="isDocumentation()">
                     <a href="https://github.com/creativetimofficial/pk-free-angular/issues?ref=pk2-free-local" target="_blank" class="nav-link">Have an issue</a>
                 </li>
+                <li class="nav-item" style="margin-left: 3px;" *ngIf="!isDocumentation() && !isSignUp() && !authService.isAuthenticated()">
+                    <a [routerLink]="['/login']" class="nav-link" style="background-color: #47617f; border-radius: 8px; border: none; color: white; border-radius: 8px; border: none;"><i style="font-size: 1.5em !important" class="fa fa-sign-in icon-2x" aria-hidden="true"></i>       Login</a>
+                </li>
             </ul>
+
+
         </div>
     </div>
 </nav>
